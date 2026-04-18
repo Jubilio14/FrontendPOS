@@ -1,0 +1,21 @@
+import { Routes, Route } from "react-router-dom";
+import MainLayout from "../layouts/MainLayout";
+import Home from "../pages/Home";
+import Revenue from "../pages/Revenue";
+import SalesCategory from "../pages/SalesCategory";
+import Cashier from "../pages/Cashier";
+import Invoice from "../pages/Invoice";
+
+export default function AppRoutes() {
+  return (
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<Home />} />
+        <Route path="revenue" element={<Revenue />} />
+        <Route path="sales-category" element={<SalesCategory />} />
+        <Route path="cashier" element={<Cashier />} />        
+        <Route path="invoice" element={<Invoice />} />
+      </Route>
+    </Routes>
+  );
+}
