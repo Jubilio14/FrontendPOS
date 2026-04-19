@@ -335,7 +335,7 @@ export default function Invoice() {
           setPaymentMethod("");
           navigate("/cashier");
         }}
-        className="w-full py-2 bg-[#702BF0] text-white rounded-full hover:opacity-80 transition"
+        className="w-full py-2 bg-[#702BF0] text-white rounded-full cursor-pointer hover:opacity-80 transition"
       >
         Done
       </button>

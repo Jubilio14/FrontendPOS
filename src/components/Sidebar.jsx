@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const menus = [
   { path: "/", icon: "/icons/Home.png" },
   { path: "/Cashier", icon: "/icons/Cashier.png" },
-  { path: "/order", icon: "/icons/Item.png" },
+  { path: "/Product", icon: "/icons/Item.png" },
   { path: "/store", icon: "/icons/Warehouse.png" },
   { path: "/users", icon: "/icons/Supplier.png" },
   { path: "/history", icon: "/icons/History.png" },

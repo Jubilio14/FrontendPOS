@@ -5,6 +5,7 @@ import Revenue from "../pages/Revenue";
 import SalesCategory from "../pages/SalesCategory";
 import Cashier from "../pages/Cashier";
 import Invoice from "../pages/Invoice";
+import Product from "../pages/Product";
 
 export default function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
         <Route path="sales-category" element={<SalesCategory />} />
         <Route path="cashier" element={<Cashier />} />        
         <Route path="invoice" element={<Invoice />} />
+        <Route path="product" element={<Product />} />
       </Route>
     </Routes>
   );

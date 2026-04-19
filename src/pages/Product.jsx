@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Cashier() {
-    const categories = [
+export default function Product() {
+    const [categories, setCategories] = useState([
         { name: "All Item", icon: "/icons/category.png" },
         { name: "Botol & Tumbler", icon: "/icons/category.png" },
         { name: "Wadah Makanan", icon: "/icons/category.png" },
@@ -11,101 +11,115 @@ export default function Cashier() {
         { name: "Penyimpanan", icon: "/icons/category.png" },
         { name: "Peralatan Makan", icon: "/icons/category.png" },
         { name: "Perlengkapan", icon: "/icons/category.png" },
-    ];
+    ]);
 
-    const products = [
+    const [products, setProducts] = useState([
         {
+            id: 1,
             name: "Keramik",
             category: "Botol & Tumbler",
-            price: "20.000",
-            stock: "200pcs",
+            price: 20000,
+            stock: 200,
             image: "/cashier.png",
         },
         {
+            id: 2,
             name: "Piring",
             category: "Wadah Makanan",
-            price: "15.000",
-            stock: "150pcs",
+            price: 15000,
+            stock: 150,
             image: "/cashier.png",
         },
         {
+            id: 3,
             name: "Botol",
             category: "Kantong & Kemasan",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 4,
             name: "Botol",
             category: "Peralatan Rumah",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 5,
             name: "Botol",
             category: "Penyimpanan",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 6,
             name: "Botol",
             category: "Peralatan Makanan",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 7,
             name: "Botol",
             category: "Kantong & Kemasan",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 8,
             name: "Botol",
             category: "Peralatan Makan",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 9,
             name: "Botol",
             category: "Penyimpanan",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 10,
             name: "Botol",
             category: "Wadah Makanan",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 11,
             name: "Botol",
             category: "Botol & Tumbler",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 12,
             name: "Botol",
             category: "Botol & Tumbler",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
         {
+            id: 13,
             name: "Botol",
             category: "Botol & Tumbler",
-            price: "18.000",
-            stock: "100pcs",
+            price: 18000,
+            stock: 100,
             image: "/cashier.png",
         },
-    ];
+    ]);
+
 
     const [activeCategory, setActiveCategory] = useState("All Item");
     const filteredProducts =
@@ -172,6 +186,18 @@ export default function Cashier() {
         0
     );
     const navigate = useNavigate();
+
+    const [showAddMenu, setShowAddMenu] = useState(false);
+    const [showAddCategory, setShowAddCategory] = useState(false);
+    const [categoryName, setCategoryName] = useState("");
+    const [error, setError] = useState("");
+    const [showAddProduct, setShowAddProduct] = useState(false);
+
+    const [productName, setProductName] = useState("");
+    const [productCategory, setProductCategory] = useState("");
+    const [price, setPrice] = useState("");
+    const [stock, setStock] = useState("");
+    const [errorProduct, setErrorProduct] = useState("");
     const getTotalByCategory = (categoryName) => {
         return products.filter(p => p.category === categoryName).length;
     };
@@ -185,12 +211,8 @@ export default function Cashier() {
             {/* Kiri */}
             <div>
             <h1 className="text-[44px] font-semibold leading-[66px]">
-                Hello!
+                Product Management
             </h1>
-
-            <p className="text-[14px] leading-[21px] font-normal text-[#9A9A9A]">
-                Asep Rendang
-            </p>
             </div>
 
             {/* Kanan (Search) */}
@@ -201,7 +223,7 @@ export default function Cashier() {
         </div>
 
         {/* FILTER */}
-        <div className="flex gap-[20px] overflow-x-auto pb-2">
+        <div className="flex flex-wrap gap-[10px] pb-2">
 
             {categories.map((cat) => {
                 const isActive = activeCategory === cat.name;
@@ -217,6 +239,7 @@ export default function Cashier() {
                         : "bg-[#FFFFFF]"
                     }`}
                 >
+                    
 
                     {/* ICON */}
                     <img
@@ -291,7 +314,7 @@ export default function Cashier() {
 
                     {/* HARGA */}
                     <p className="text-[14px] leading-[21px] font-semibold text-[#702BF0]">
-                        {item.price}
+                        Rp {item.price.toLocaleString("id-ID")}
                     </p>
 
                     {/* QUANTITY */}
@@ -301,21 +324,9 @@ export default function Cashier() {
                         </span>
 
                         <span className="text-[12px] leading-[18px] text-[#702BF0]">
-                        {item.stock}
+                        {item.stock}pcs
                         </span>
                     </div>
-
-                    {/* BUTTON */}
-                    <button 
-                        onClick={() => {
-                            setSelectedProduct(item);
-                            setVariant("Merah");
-                            setType("");
-                            setQty(1);
-                            setShowModal(true)}}
-                        className="w-[252px] h-[41px] mt-4 mx-auto block bg-[#702BF0] text-[#EAEAEA] text-[14px] py-[10px] px-[30px] rounded-full cursor-pointer hover:opacity-90 transition">
-                         Add to Cart
-                    </button>
 
                     </div>
                 ))
@@ -463,20 +474,361 @@ export default function Cashier() {
 
         </div>
 
-         {/* CART  */}
+         {/* ADD Floating  */}
         <div
-            onClick={() => setShowCart(true)}
-            className={`bottom-6 right-[24px] z-[10] w-[64px] h-[64px] bg-[#702BF0] rounded-full flex items-center justify-center cursor-pointer shadow-lg relative 
+            onClick={() => setShowAddMenu(true)}
+            className={`bottom-6 right-[24px] z-[10] w-[64px] h-[64px] bg-[#DF5C53] rounded-full flex items-center justify-center cursor-pointer shadow-lg relative 
               ${animateCart ? "scale-125" : "scale-100"}  `}
             style={{ position: "fixed" }}
         >
-            <img src="/icons/Cart.png" className="w-[48px] h-[48px]" />
+            <img src="/icons/Plus.png" className="w-[28px] h-[28px]" />
+        </div>
 
-            {cart.length > 0 && (
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                {cart.length}
+        {/* Choose Item/Category */}
+        <div className={`fixed inset-0 z-en z-[9999] flex h-screen transition-all duration-300
+            ${showAddMenu ? "visible" : "invisible"}
+            `}>
+
+            {/* OVERLAY */}
+            <div
+                className={`flex-1 h-screen bg-black/50 transition-opacity duration-300
+                ${showAddMenu ? "opacity-100" : "opacity-0"}
+                `}
+                onClick={() => setShowAddMenu(false)}
+            ></div>
+
+            {/* PANEL KANAN */}
+            <div
+                className={`w-[550px] h-screen z-[9999] bg-white p-6 shadow-lg flex flex-col transform transition-transform duration-300
+                ${showAddMenu ? "translate-x-0" : "translate-x-full"}
+                `}
+            >
+
+                {/* TITLE */}
+                <h2 className="text-[36px] leading-[54px] text-[#1D1D1D] font-semibold mb-[20px]">
+                Add Data
+                </h2>
+
+                {/* OPTION */}
+                <div className="flex flex-col gap-4">
+
+                {/* ADD CATEGORY */}
+                <button
+                    onClick={() => {
+                    setShowAddMenu(false);
+                    setShowAddCategory(true);
+                    }}
+                    className="w-full h-[50px] bg-[#EAEAEA] rounded-xl text-left px-4 cursor-pointer hover:bg-gray-300 transition"
+                >
+                    Add Category
+                </button>
+
+                {/* ADD PRODUCT */}
+                <button
+                    onClick={() => {
+                    setShowAddMenu(false);
+                    setShowAddProduct(true);
+                    }}
+                    className="w-full h-[50px] bg-[#EAEAEA] rounded-xl text-left px-4 cursor-pointer hover:bg-gray-300 transition"
+                >
+                    Add Product
+                </button>
+
+                </div>
+
+            </div>
+        </div>
+
+        {/* ADD CATEGORY MODAL */}
+        <div className={`fixed inset-0 z-[9999] flex h-screen transition-all duration-300
+        ${showAddCategory ? "visible" : "invisible"}
+        `}>
+
+        {/* OVERLAY */}
+        <div
+            className={`flex-1 h-screen bg-black/50 transition-opacity duration-300
+            ${showAddCategory ? "opacity-100" : "opacity-0"}
+            `}
+            onClick={() => setShowAddCategory(false)}
+        ></div>
+
+        {/* PANEL KANAN */}
+        <div
+            className={`w-[550px] h-screen z-[9999] bg-white p-6 shadow-lg flex flex-col transform transition-transform duration-300
+            ${showAddCategory ? "translate-x-0" : "translate-x-full"}
+            `}
+        >
+
+            {/* TITLE */}
+            <h2 className="text-[36px] leading-[54px] text-[#1D1D1D] font-semibold mb-6">
+            Add Category
+            </h2>
+
+            {/* FORM */}
+            <div className="flex flex-col gap-4">
+
+            {/* ICON (STATIC) */}
+            <div className="flex items-center h-[50px] bg-[#EAEAEA] rounded-full px-4 gap-3 opacity-60 cursor-not-allowed">
+                <img src="/icons/category.png" className="w-[20px] h-[20px]" />
+                <span className="text-sm text-gray-400">
+                Icon (auto)
                 </span>
+            </div>
+
+            {/* INPUT NAME */}
+            <input
+                type="text"
+                placeholder="Category Name"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
+            />
+            {error && (
+                <p className="text-red-500 text-sm mt-1">
+                    {error}
+                </p>
             )}
+
+            </div>
+
+            {/* BUTTON BAWAH */}
+            <div className="mt-auto flex justify-end gap-3 pt-6">
+
+            <button
+                onClick={() => setShowAddCategory(false)}
+                className="px-6 py-2 bg-[#EAEAEA] rounded-full cursor-pointer hover:opacity-80 transition"
+            >
+                Cancel
+            </button>
+
+            <button
+                onClick={() => {
+                const name = categoryName.trim();
+
+                // ❌ kosong
+                if (!name) {
+                setError("Category name tidak boleh kosong");
+                return;
+                }
+
+                // ❌ duplicate (case insensitive)
+                const isExist = categories.some(
+                (c) => c.name.toLowerCase() === name.toLowerCase()
+                );
+
+                if (isExist) {
+                setError("Category sudah ada");
+                return;
+                }
+
+                // ✅ lolos
+                const newCategory = {
+                name,
+                icon: "/icons/category.png",
+                };
+
+                setCategories((prev) => [...prev, newCategory]);
+
+                // reset
+                setCategoryName("");
+                setError("");
+                setShowAddCategory(false);
+                }}
+                className={`px-6 py-2 bg-[#702BF0] text-white rounded-full hover:opacity-80 transition ${
+                    !categoryName.trim()
+                    ? "bg-gray-300 cursor-not-allowed"
+                    : "bg-[#702BF0] cursor-pointer hover:opacity-80"
+                }`}
+            >
+                Add
+            </button>
+
+            </div>
+
+        </div>
+        </div>
+
+        {/* ADD ITEM MODAL */}
+        <div className={`fixed inset-0 z-[9999] flex h-screen transition-all duration-300
+        ${showAddProduct ? "visible" : "invisible"}
+        `}>
+
+        {/* OVERLAY */}
+        <div
+            className={`flex-1 h-screen bg-black/50 transition-opacity duration-300
+            ${showAddProduct ? "opacity-100" : "opacity-0"}
+            `}
+            onClick={() => setShowAddProduct(false)}
+        ></div>
+
+        {/* PANEL */}
+        <div
+            className={`w-[550px] h-screen z-[9999] bg-white p-6 shadow-lg flex flex-col transform transition-transform duration-300
+            ${showAddProduct ? "translate-x-0" : "translate-x-full"}
+            `}
+        >
+
+            {/* TITLE */}
+            <h2 className="text-[36px] leading-[54px] text-[#1D1D1D] font-semibold mb-6">
+            Add Item
+            </h2>
+
+            {/* FORM */}
+            <div className="flex flex-col gap-4">
+
+            {/* IMAGE (AUTO) */}
+            <div className="flex items-center h-[50px] bg-[#EAEAEA] rounded-full px-4 gap-3 opacity-60 cursor-not-allowed">
+                <img src="/cashier.png" className="w-[24px] h-[24px]" />
+                <span className="text-sm text-gray-400">
+                Image (auto)
+                </span>
+            </div>
+
+            {/* NAME */}
+            <input
+                type="text"
+                placeholder="Product Name"
+                value={productName}
+                onChange={(e) => {
+                setProductName(e.target.value);
+                setErrorProduct("");
+                }}
+                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
+            />
+
+            {/* CATEGORY */}
+            <div className="relative">
+  
+                <select
+                    value={productCategory}
+                    onChange={(e) => {
+                    setProductCategory(e.target.value);
+                    setErrorProduct("");
+                    }}
+                    className="w-full h-[50px] bg-[#EAEAEA] rounded-full px-4 pr-10 outline-none appearance-none cursor-pointer hover:bg-[#E0E0E0] transition"
+                >
+                    <option value="">Select Category</option>
+                    {categories
+                    .filter(c => c.name !== "All Item")
+                    .map((cat) => (
+                        <option key={cat.name} value={cat.name}>
+                        {cat.name}
+                        </option>
+                    ))}
+                </select>
+
+                {/* CUSTOM ARROW */}
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                    <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    >
+                    <path
+                        d="M5 7L10 12L15 7"
+                        stroke="#1D1D1D"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                    </svg>
+                </div>
+
+                </div>
+
+            {/* PRICE */}
+            <input
+                type="number"
+                placeholder="Price"
+                value={price}
+                onChange={(e) => {
+                setPrice(e.target.value);
+                setErrorProduct("");
+                }}
+                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
+            />
+
+            {/* STOCK */}
+            <input
+                type="number"
+                placeholder="Stock"
+                value={stock}
+                onChange={(e) => {
+                setStock(e.target.value);
+                setErrorProduct("");
+                }}
+                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
+            />
+
+            {/* ERROR */}
+            {errorProduct && (
+                <p className="text-red-500 text-sm">
+                {errorProduct}
+                </p>
+            )}
+
+            </div>
+
+            {/* BUTTON */}
+            <div className="mt-auto flex justify-end gap-3 pt-6">
+
+            <button
+                onClick={() => setShowAddProduct(false)}
+                className="px-6 py-2 bg-[#EAEAEA] rounded-full cursor-pointer hover:opacity-80 transition"
+            >
+                Cancel
+            </button>
+
+            <button
+                onClick={() => {
+                const name = productName.trim();
+
+                if (!name || !productCategory || !price || !stock) {
+                    setErrorProduct("Semua field wajib diisi");
+                    return;
+                }
+
+                const isExist = products.some(
+                    (p) => p.name.toLowerCase() === name.toLowerCase()
+                );
+
+                if (isExist) {
+                    setErrorProduct("Product sudah ada");
+                    return;
+                }
+
+                const newProduct = {
+                    id: Date.now(),
+                    name,
+                    category: productCategory,
+                    price: Number(price),
+                    stock: Number(stock),
+                    image: "/cashier.png",
+                };
+
+                setProducts((prev) => [...prev, newProduct]);
+
+                // reset
+                setProductName("");
+                setProductCategory("");
+                setPrice("");
+                setStock("");
+                setErrorProduct("");
+                setShowAddProduct(false);
+                }}
+                className={`px-6 py-2 rounded-full text-white ${
+                !productName || !productCategory || !price || !stock
+                    ? "bg-gray-300 cursor-not-allowed"
+                    : "bg-[#702BF0] cursor-pointer hover:opacity-80 transition"
+                }`}
+            >
+                Add
+            </button>
+
+            </div>
+
+        </div>
         </div>
 
         {/* CART MODAL */}
@@ -642,10 +994,6 @@ export default function Cashier() {
 
                 </div>
         </div>
-
-
-
-
 
     </div>
     
