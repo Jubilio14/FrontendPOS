@@ -7,6 +7,8 @@ import Cashier from "../pages/Cashier";
 import Invoice from "../pages/Invoice";
 import Product from "../pages/Product";
 import DetailProduct from "../pages/DetailProduct";
+import History from "../pages/History";
+import OrderDetail from "../pages/OrderDetail";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +21,8 @@ export default function AppRoutes() {
         <Route path="invoice" element={<Invoice />} />
         <Route path="product" element={<Product />} />
         <Route path="product/:id" element={<DetailProduct />} />
+        <Route path="history" element={<History />} />
+        <Route path="history/order-detail" element={<OrderDetail />} />
       </Route>
     </Routes>
   );
