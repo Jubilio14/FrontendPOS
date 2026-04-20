@@ -42,3 +42,11 @@ input[type="number"] {
 .animate-slide-down {
   animation: slide-down 0.3s ease;
 }
+
+#pdf-content {
+  background: white !important;
+}
+
+#pdf-content * {
+  color: #000 !important;
+}

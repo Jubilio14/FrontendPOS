@@ -9,6 +9,7 @@ import Product from "../pages/Product";
 import DetailProduct from "../pages/DetailProduct";
 import History from "../pages/History";
 import OrderDetail from "../pages/OrderDetail";
+import Warehouse from "../pages/Warehouse";
 
 export default function AppRoutes() {
   return (
@@ -23,6 +24,7 @@ export default function AppRoutes() {
         <Route path="product/:id" element={<DetailProduct />} />
         <Route path="history" element={<History />} />
         <Route path="history/order-detail" element={<OrderDetail />} />
+        <Route path="warehouse" element={<Warehouse />} />
       </Route>
     </Routes>
   );

@@ -201,6 +201,7 @@ export default function Cashier() {
         </div>
 
         {/* FILTER */}
+        
         <div className="flex gap-[20px] overflow-x-auto pb-2">
 
             {categories.map((cat) => {
