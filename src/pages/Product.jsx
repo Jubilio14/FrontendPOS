@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Product() {
     const [categories, setCategories] = useState([
@@ -201,6 +202,18 @@ export default function Product() {
     const getTotalByCategory = (categoryName) => {
         return products.filter(p => p.category === categoryName).length;
     };
+
+    const location = useLocation();
+    const [showToast, setShowToast] = useState(false);
+    useEffect(() => {
+        if (location.state?.deleted) {
+            setShowToast(true);
+
+            setTimeout(() => {
+            setShowToast(false);
+            }, 2000);
+        }
+    }, [location.state]);
     
   return (
     <div className="space-y-[50px]">
@@ -232,7 +245,7 @@ export default function Product() {
                 <div
                     key={cat.name}
                     onClick={() => setActiveCategory(cat.name)}
-                    className={`w-[140px] h-[103px] p-3 rounded-xl cursor-pointer transition
+                    className={`w-[140px] h-[120px] p-3 rounded-xl cursor-pointer transition
                     ${
                         isActive
                         ? "bg-[#702BF0]"
@@ -289,8 +302,13 @@ export default function Product() {
             ) : (
                 filteredProducts.map((item, i) => (
                     <div
+                    onClick={() =>
+                        navigate(`/product/${item.id}`, {
+                            state: { product: item },
+                        })
+                    }   
                     key={i}
-                    className="bg-white p-4 rounded-2xl shadow-sm"
+                    className="bg-white p-4 rounded-2xl shadow-sm cursor-pointer hover:scale-[1.02] transition"
                     >
 
                     {/* IMAGE */}
@@ -994,6 +1012,31 @@ export default function Product() {
 
                 </div>
         </div>
+
+        {showToast && (
+            <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[9999] animate-slide-down">
+                
+                <div className="bg-white px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 border">
+
+                {/* ICON */}
+                <div className="w-[40px] h-[40px] bg-green-100 rounded-full flex items-center justify-center">
+                    <span className="text-green-500 text-xl">✓</span>
+                </div>
+
+                {/* TEXT */}
+                <div>
+                    <p className="text-[14px] font-semibold text-[#1D1D1D]">
+                    Berhasil
+                    </p>
+                    <p className="text-[12px] text-gray-400">
+                    Produk berhasil dihapus
+                    </p>
+                </div>
+
+                </div>
+
+            </div>
+            )}
 
     </div>
     

@@ -210,7 +210,7 @@ export default function Cashier() {
                 <div
                     key={cat.name}
                     onClick={() => setActiveCategory(cat.name)}
-                    className={`w-[140px] h-[103px] p-3 rounded-xl cursor-pointer transition
+                    className={`w-[140px] h-[120px] p-3 rounded-xl cursor-pointer transition
                     ${
                         isActive
                         ? "bg-[#702BF0]"
