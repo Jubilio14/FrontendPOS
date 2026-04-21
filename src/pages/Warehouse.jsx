@@ -142,8 +142,11 @@ export default function Warehouse() {
         {/* ROW */}
         {warehouse.map((item, i) => (
           <div
+            onClick={() => navigate(`/warehouse/${i}`, {
+              state: { name: item.name }
+            })}
             key={i}
-            className="grid grid-cols-[50px_2fr_3fr_1fr_1fr_1fr] items-center p-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] hover:bg-gray-50 transition"
+            className="grid grid-cols-[50px_2fr_3fr_1fr_1fr_1fr] items-center p-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] cursor-pointer hover:bg-gray-50 transition"
           >
             <span>{i + 1}</span>
             <span>{item.name}</span>
