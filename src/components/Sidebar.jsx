@@ -5,7 +5,7 @@ const menus = [
   { path: "/Cashier", icon: "/icons/Cashier.png" },
   { path: "/Product", icon: "/icons/Item.png" },
   { path: "/Warehouse", icon: "/icons/Warehouse.png" },
-  { path: "/users", icon: "/icons/Supplier.png" },
+  { path: "/Supplier", icon: "/icons/Supplier.png" },
   { path: "/history", icon: "/icons/History.png" },
 ];
 

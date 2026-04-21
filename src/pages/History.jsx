@@ -181,7 +181,7 @@ const orderHeader = [
     },
   ]; 
   // 🔥 FILTER LOGIC
-const filteredData =
+  const filteredData =
   activeTab === "product"
     ? productHistory.filter((item) => {
         if (filterType === "in") return item.qty > 0;
@@ -190,11 +190,11 @@ const filteredData =
       })
     : orderHistory;
 
-const handleToggleFilter = () => {
+  const handleToggleFilter = () => {
     if (filterType === "all") setFilterType("in");
     else if (filterType === "in") setFilterType("out");
     else setFilterType("all");
-};
+  };
 
 const data = activeTab === "product" ? productHistory : orderHistory;
 const headers = activeTab === "product" ? productHeader : orderHeader;

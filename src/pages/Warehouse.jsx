@@ -127,7 +127,7 @@ export default function Warehouse() {
         </div>
 
       {/* TABLE */}
-      <div id="pdf-content" className="bg-white text-black rounded-2xl p-6">
+      <div className="bg-white text-black rounded-2xl p-6">
 
         {/* HEADER TABLE */}
         <div className="grid grid-cols-[50px_2fr_3fr_1fr_1fr_1fr] text-[14px] leading-[21px] font-medium text-[#1D1D1D] px-[20px] py-[30px] gap-[20px]">

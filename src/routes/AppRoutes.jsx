@@ -11,6 +11,7 @@ import History from "../pages/History";
 import OrderDetail from "../pages/OrderDetail";
 import Warehouse from "../pages/Warehouse";
 import WarehouseDetail from "../pages/WarehouseDetail";
+import Supplier from "../pages/Supplier";
 
 export default function AppRoutes() {
   return (
@@ -27,6 +28,7 @@ export default function AppRoutes() {
         <Route path="history/order-detail" element={<OrderDetail />} />
         <Route path="warehouse" element={<Warehouse />} />
         <Route path="warehouse/:id" element={<WarehouseDetail />} />
+        <Route path="supplier" element={<Supplier />} />
       </Route>
     </Routes>
   );
