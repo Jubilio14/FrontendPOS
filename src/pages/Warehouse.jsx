@@ -71,7 +71,40 @@ export default function Warehouse() {
    const [address, setAddress] = useState("");
    const [floor, setFloor] = useState("");
    const [gfa, setGFA] = useState("");
-   const [code, setCode] = useState("");
+   const [storageArea, setStorageArea] = useState("");
+   const [errorWarehouse, setErrorWarehouse] = useState("");
+   
+  const [warehouse, setWarehouse] = useState(orderItems);
+
+   const handleAddItem = () => {
+    const name = warehouseName.trim();
+
+      if (!name || !address || !floor || !gfa || !storageArea) {
+        setErrorWarehouse("Semua field wajib diisi");
+        return;
+      }
+
+      const newItem = {
+        id: Date.now(),
+        name,
+        address,
+        floor,
+        gfa,
+        storageArea,
+      };
+
+      setWarehouse((prev) => [...prev, newItem]);
+
+      // reset form
+      setWarehouseName("");
+      setAddress("");
+      setGFA("");
+      setFloor("");
+      setStorageArea("");
+      setErrorWarehouse("");
+
+      setShowAddWarehouse(false);
+    };
 
   return (
     <div className="p-6">
@@ -82,7 +115,7 @@ export default function Warehouse() {
             {/* Kiri */}
             <div>
             <h1 className="text-[44px] font-semibold leading-[66px]">
-                Product Management
+                Warehouse
             </h1>
             </div>
 
@@ -107,7 +140,7 @@ export default function Warehouse() {
         </div>
 
         {/* ROW */}
-        {orderItems.map((item, i) => (
+        {warehouse.map((item, i) => (
           <div
             key={i}
             className="grid grid-cols-[50px_2fr_3fr_1fr_1fr_1fr] items-center p-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] hover:bg-gray-50 transition"
@@ -162,59 +195,113 @@ export default function Warehouse() {
             <div className="flex flex-col gap-4">
 
             {/* NAME */}
-            <input
+           <div className="relative group">
+              <img
+                src="/icons/Warehouse.png"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] opacity-50"
+              />
+
+              <input
                 type="text"
                 placeholder="Warehouse Name"
                 value={warehouseName}
-                onChange={(e) => {
-                setWarehouseName(e.target.value);
-                }}
-                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
-            />
+                onChange={(e) => setWarehouseName(e.target.value)}
+                className="h-[50px] w-full bg-[#EAEAEA] rounded-full pl-10 pr-4 outline-none"
+              />
+            </div>
 
             {/* Address */}
-            <input
+            <div className="relative group">
+              <img
+                src="/icons/Location.png"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] opacity-50"
+              />
+              <input
                 type="text"
                 placeholder="Address"
                 value={address}
                 onChange={(e) => {
                 setAddress(e.target.value);
                 }}
-                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
-            />
+                className="h-[50px] w-full bg-[#EAEAEA] rounded-full pl-10 pr-4 outline-none"
+              />
+            </div>
+            
 
             {/* Floor */}
-            <input
+            <div className="relative group">
+              <img
+                src="/icons/Floor.png"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] opacity-50"
+              />
+              <input
                 type="text"
                 placeholder="Floor"
                 value={floor}
                 onChange={(e) => {
                 setFloor(e.target.value);
                 }}
-                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
-            />
+                className="h-[50px] w-full bg-[#EAEAEA] rounded-full pl-10 pr-4 outline-none"
+              />
+            </div>
+            
 
             {/* GFA */}
-            <input
+            <div className="relative group">
+              <img
+                src="/icons/Warehouse.png"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] opacity-50"
+              />
+              <input
                 type="text"
                 placeholder="GFA"
                 value={gfa}
                 onChange={(e) => {
                 setGFA(e.target.value);
                 }}
-                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
-            />
+                className="h-[50px] bg-[#EAEAEA] w-full pl-10 pr-4 rounded-full  outline-none"
+              />
+            </div>
 
             {/* CODE */}
-            <input
+            <div className="relative group">
+              <img
+                src="/icons/Warehouse.png"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] opacity-50"
+              />
+              <input
                 type="text"
                 placeholder="Code"
-                value={code}
+                value={storageArea}
                 onChange={(e) => {
-                setCode(e.target.value);
+                setStorageArea(e.target.value);
                 }}
-                className="h-[50px] bg-[#EAEAEA] rounded-full px-4 outline-none"
-            />
+                className="h-[50px] bg-[#EAEAEA] w-full pl-10 pr-4 rounded-full px-4 outline-none"
+              />
+            </div>
+            
+            {/* Button */}
+            <div className="mt-auto flex justify-end gap-3 pt-6">
+
+              <button
+                onClick={() => setShowAddWarehouse(false)}
+                className="px-6 py-2 bg-[#EAEAEA] rounded-full cursor-pointer hover:opacity-80 transition"
+              >
+                Cancel
+              </button>
+
+              <button
+                onClick={handleAddItem}
+                className={`px-6 py-2 rounded-full text-white ${
+                  !warehouseName || !address || !floor || !gfa || !storageArea
+                    ? "bg-gray-300 cursor-not-allowed"
+                    : "bg-[#702BF0] cursor-pointer hover:opacity-80 transition"
+                }`}
+              >
+                Add
+              </button>
+
+            </div>
             
             </div>
         </div>
