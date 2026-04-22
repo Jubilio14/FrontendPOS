@@ -274,7 +274,7 @@ export default function Warehouse() {
               />
               <input
                 type="text"
-                placeholder="Code"
+                placeholder="Storage Area"
                 value={storageArea}
                 onChange={(e) => {
                 setStorageArea(e.target.value);

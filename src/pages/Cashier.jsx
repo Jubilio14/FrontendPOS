@@ -644,9 +644,7 @@ export default function Cashier() {
                 </div>
         </div>
 
-
-
-
+        
 
     </div>
     
