@@ -1,5 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
+import Login from "../pages/Login";
+
+// pages
 import Home from "../pages/Home";
 import Revenue from "../pages/Revenue";
 import SalesCategory from "../pages/SalesCategory";
@@ -21,7 +24,13 @@ import SupplierInvoice from "../pages/SupplierInvoice";
 export default function AppRoutes() {
   return (
     <Routes>
+
+      {/* LOGIN */}
+      <Route path="/login" element={<Login />} />
+
+      {/* APP */}
       <Route path="/" element={<MainLayout />}>
+
         <Route index element={<Home />} />
         <Route path="revenue" element={<Revenue />} />
         <Route path="sales-category" element={<SalesCategory />} />
@@ -39,7 +48,9 @@ export default function AppRoutes() {
         <Route path="supplier/edit/:id" element={<EditSupplier />} />
         <Route path="supplier/detail/:id" element={<SupplierDetail />} />
         <Route path="supplier/invoice" element={<SupplierInvoice />} />
+
       </Route>
+
     </Routes>
   );
 }

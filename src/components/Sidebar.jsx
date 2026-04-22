@@ -1,45 +1,69 @@
-import { NavLink } from "react-router-dom";
-
-const menus = [
-  { path: "/", icon: "/icons/Home.png" },
-  { path: "/Cashier", icon: "/icons/Cashier.png" },
-  { path: "/Product", icon: "/icons/Item.png" },
-  { path: "/Warehouse", icon: "/icons/Warehouse.png" },
-  { path: "/Supplier", icon: "/icons/Supplier.png" },
-  { path: "/history", icon: "/icons/History.png" },
-];
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
+  const role = localStorage.getItem("role");
+  const navigate = useNavigate();
+
+  // 🔥 ADMIN
+  const adminMenus = [
+    { path: "/", icon: "/icons/Home.png" },
+    { path: "/cashier", icon: "/icons/Cashier.png" },
+    { path: "/product", icon: "/icons/Item.png" },
+    { path: "/warehouse", icon: "/icons/Warehouse.png" },
+    { path: "/supplier", icon: "/icons/Supplier.png" },
+    { path: "/history", icon: "/icons/History.png" },
+  ];
+
+  // 🔥 CASHIER (ONLY 1 MENU)
+  const cashierMenus = [
+    { path: "/cashier", icon: "/icons/Cashier.png" },
+  ];
+
+  const menus = role === "admin" ? adminMenus : cashierMenus;
+
   return (
     <div className="w-20 h-screen bg-white fixed left-0 top-0 flex flex-col items-center py-4">
 
-      {/* Menu */}
+      {/* MENU */}
       <div className="flex flex-col gap-4">
         {menus.map((item, index) => (
           <NavLink
             key={index}
             to={item.path}
             className={({ isActive }) =>
-                `w-12 h-12 flex items-center justify-center rounded-2xl transition ${
-                isActive ? "bg-purple-100" : "hover:bg-gray-100"
-                }`
+              `w-12 h-12 flex items-center justify-center rounded-2xl transition-all duration-200 ${
+                isActive ? "scale-150" : "hover:scale-120"
+              }`
             }
-            >
+          >
             <img
-                src={item.icon}
-                className="w-9 h-9 object-contain"
+              src={item.icon}
+              className="w-8 h-8 object-contain"
             />
-           </NavLink>
+          </NavLink>
         ))}
       </div>
 
-      {/* Bottom icon (settings/profile) */}
+      {/* BOTTOM */}
       <div className="mt-auto flex flex-col items-center gap-4">
-        <img src="/icons/Notif.png" className="w-9 h-9 " />
-        <img src="/icons/Profile.png" className="w-9 h-9 " />
-        <div className="bg-purple-600 p-3 rounded-full">
-          <img src="/icons/Dark Mode.png" className="w-9 h-9 invert" />
+
+        <img src="/icons/Notif.png" className="w-8 h-8" />
+
+        {/* PROFILE = LOGOUT 🔥 */}
+        <img
+          src="/icons/Profile.png"
+          onClick={() => {
+            localStorage.removeItem("role");
+            navigate("/login");
+          }}
+          className="w-8 h-8 cursor-pointer hover:scale-110 transition"
+          title="Logout"
+        />
+
+        <div className="bg-purple-600 p-2 rounded-full">
+          <img src="/icons/Dark Mode.png" className="w-6 h-6 invert" />
         </div>
+
       </div>
 
     </div>
