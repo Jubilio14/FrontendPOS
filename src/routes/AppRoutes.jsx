@@ -15,6 +15,8 @@ import Supplier from "../pages/Supplier";
 import Handover from "../pages/Handover";
 import NewSupplier from "../pages/NewSupplier";
 import EditSupplier from "../pages/EditSupplier";
+import SupplierDetail from "../pages/SupplierDetail";
+import SupplierInvoice from "../pages/SupplierInvoice";
 
 export default function AppRoutes() {
   return (
@@ -35,6 +37,8 @@ export default function AppRoutes() {
         <Route path="supplier/:id" element={<Handover />} />
         <Route path="supplier/add" element={<NewSupplier />} />
         <Route path="supplier/edit/:id" element={<EditSupplier />} />
+        <Route path="supplier/detail/:id" element={<SupplierDetail />} />
+        <Route path="supplier/invoice" element={<SupplierInvoice />} />
       </Route>
     </Routes>
   );

@@ -235,8 +235,13 @@ export default function Supplier() {
             ) : (
             data.map((item, i) => (
                 <div
+                onClick={() =>
+                    navigate(`/supplier/detail/${i}`, {
+                    state: { supplier: item }
+                    })
+                    }
                 key={i}
-                className="grid grid-cols-[50px_1fr_2fr_1fr_80px] items-center px-[20px] py-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] hover:bg-gray-50 transition"
+                className="grid grid-cols-[50px_1fr_2fr_1fr_80px] items-center px-[20px] py-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] hover:bg-gray-50 transition cursor-pointer"
                 >
                 <span>{i + 1}</span>
                 <span>{item.name}</span>
