@@ -263,9 +263,13 @@ export default function Supplier() {
                     <img src="/icons/ItemBlack.png" className="w-[14px] h-[14px]" />
                     <span>{item.totalItem} Item</span>
                 </div>
-                <p className="text-[12px] leading-[18px] font-normal test-[#1D1D1D] ">{item.date}</p>
+                <p className="text-[12px] leading-[18px] font-normal text-[#1D1D1D] ">{item.date}</p>
 
-                <button className="mt-4 w-full bg-[#702BF0] text-white px-[30px] py-[10px] gap-[10px] text-[14px] leading-[21px] font-normal text-[#EAEAEA] rounded-full hover:opacity-80 transition cursor-pointer ">
+                <button 
+                    onClick={() =>
+                        navigate(`/supplier/${encodeURIComponent(item.name)}`)
+                    }
+                    className="mt-4 w-full bg-[#702BF0] text-white px-[30px] py-[10px] gap-[10px] text-[14px] leading-[21px] font-normal text-[#EAEAEA] rounded-full hover:opacity-80 transition cursor-pointer ">
                 Confirm
                 </button>
             </div>
