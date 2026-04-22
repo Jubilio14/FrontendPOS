@@ -13,6 +13,8 @@ import Warehouse from "../pages/Warehouse";
 import WarehouseDetail from "../pages/WarehouseDetail";
 import Supplier from "../pages/Supplier";
 import Handover from "../pages/Handover";
+import NewSupplier from "../pages/NewSupplier";
+import EditSupplier from "../pages/EditSupplier";
 
 export default function AppRoutes() {
   return (
@@ -31,6 +33,8 @@ export default function AppRoutes() {
         <Route path="warehouse/:id" element={<WarehouseDetail />} />
         <Route path="supplier" element={<Supplier />} />
         <Route path="supplier/:id" element={<Handover />} />
+        <Route path="supplier/add" element={<NewSupplier />} />
+        <Route path="supplier/edit/:id" element={<EditSupplier />} />
       </Route>
     </Routes>
   );

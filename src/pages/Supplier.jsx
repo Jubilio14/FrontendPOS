@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function Supplier() {
     const navigate = useNavigate();
+    const location = useLocation();
     const [activeTab, setActiveTab] = useState("supplier");
 
     const supplierContent = [
@@ -141,13 +143,39 @@ export default function Supplier() {
             status: "On Going",
         },
     ];
+
+    
+
+   
     const [listData, setListData] = useState(supplierContent);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [deleteIndex, setDeleteIndex] = useState(null);
     const [showToast, setShowToast] = useState(false);
 
     const data = activeTab === "supplier" ? listData : orderData;
+     const [animateCart, setAnimateCart] = useState(false);
+     const [showToastUpdate, setShowToastUpdate] = useState(false);
+    const [toastMessage, setToastMessage] = useState("");
+    useEffect(() => {
+    if (location.state?.success) {
+        setToastMessage(location.state.success);
+        setShowToastUpdate(true);
 
+        // auto hide
+        setTimeout(() => setShowToastUpdate(false), 2000);
+    }
+    }, [location.state]);
+
+    const [showToastAdd, setShowToastAdd] = useState(false);
+    useEffect(() => {
+    if (location.state?.success) {
+        setToastMessage(location.state.success);
+        setShowToastAdd(true);
+
+        // auto hide
+        setTimeout(() => setShowToastAdd(false), 2000);
+    }
+    }, [location.state]);
   return (
     <div className="p-6">
 
@@ -217,6 +245,15 @@ export default function Supplier() {
 
                 <span className="flex items-center gap-3">
                     <img
+                    onClick={(e) => {
+                        e.stopPropagation(); // penting biar ga trigger row click
+
+                        navigate(`/supplier/edit/${i}`, {
+                        state: {
+                            supplier: item,
+                        },
+                        });
+                    }}
                     src="/icons/EditPurple.png"
                     className="w-[16px] cursor-pointer hover:scale-110 transition"
                     />
@@ -233,6 +270,17 @@ export default function Supplier() {
                 </div>
             ))
             )}
+
+            {/* ADD Floating  */}
+            <div
+                onClick={() => navigate("/supplier/add")}
+                className={`bottom-6 right-[24px] z-[10] w-[64px] h-[64px] bg-[#DF5C53] rounded-full flex items-center justify-center cursor-pointer shadow-lg relative 
+                ${animateCart ? "scale-125" : "scale-100"}  `}
+                style={{ position: "fixed" }}
+            >
+                <img 
+                src="/icons/Plus.png" className="w-[28px] h-[28px]" />
+            </div>
         </div>
         )}
 
@@ -348,6 +396,18 @@ export default function Supplier() {
 
             </div>
             )}
+
+        {showToastUpdate && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 bg-[#702BF0] text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300">
+            {toastMessage}
+        </div>
+        )}
+
+        {showToastAdd && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 bg-[#702BF0] text-white px-6 py-3 rounded-full shadow-lg transition-all duration-300">
+            {toastMessage}
+        </div>
+        )}
     </div>
   );
 }
