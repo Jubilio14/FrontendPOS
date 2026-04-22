@@ -27,23 +27,32 @@ export default function Sidebar() {
       {/* MENU */}
       <div className="flex flex-col gap-4">
         {menus.map((item, index) => (
-          <NavLink
-            key={index}
-            to={item.path}
-            className={({ isActive }) =>
-              `w-12 h-12 flex items-center justify-center rounded-2xl transition-all duration-200 ${
-                isActive ? "scale-150" : "hover:scale-120"
-              }`
-            }
-          >
-            <img
-              src={item.icon}
-              className="w-8 h-8 object-contain"
-            />
+          <NavLink key={index} to={item.path}>
+            {({ isActive }) => (
+              <div
+                className={`w-12 h-12 flex flex-col items-center justify-center rounded-2xl 
+                transition-all duration-200
+                ${isActive ? "scale-110" : "hover:scale-105"}
+              `}
+              >
+                {/* ICON */}
+                <img
+                  src={item.icon}
+                  className="w-8 h-8 object-contain"
+                />
+
+                {/* GARIS BAWAH */}
+                <span
+                  className={`mt-1 h-[2px] w-4 rounded-full bg-[#702BF0] transition-all
+                  ${isActive ? "opacity-100" : "opacity-0"}
+                `}
+                />
+              </div>
+            )}
           </NavLink>
         ))}
       </div>
-
+      
       {/* BOTTOM */}
       <div className="mt-auto flex flex-col items-center gap-4">
 
