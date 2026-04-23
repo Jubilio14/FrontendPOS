@@ -32,77 +32,77 @@ const orderHeader = [
     {
       date: "16 Feb 2026",
       ref: "PO-2026-001",
-      name: "Kotak Makan Plastik 1000 ml",
+      name: "Semen Portland 40Kg",
       qty: 200,
       price: 18000,
     },
     {
       date: "16 Feb 2026",
       ref: "SO-2026-001",
-      name: "Kotak Makan Plastik 1000 ml",
+      name: "Cat Tembok Interior 5 kg",
       qty: -45,
       price: 18000,
     },
     {
       date: "16 Feb 2026",
       ref: "SO-2026-002",
-      name: "Botol Plastik PET 600 ml",
+      name: "Keramik Lantai 40x40cm",
       qty: -120,
       price: 6500,
     },
     {
       date: "15 Feb 2026",
       ref: "SO-2026-003",
-      name: "Gelas Plastik 220 ml",
+      name: "Pipa PVC AW 1/2inch x 4m",
       qty: -300,
       price: 350,
     },
     {
       date: "15 Feb 2026",
       ref: "PO-2026-002",
-      name: "Botol Plastik PET 600 ml",
+      name: "Kuas Cat 3inch",
       qty: 500,
       price: 6500,
     },
     {
       date: "15 Feb 2026",
       ref: "SO-2026-004",
-      name: "Ember Plastik 10 Liter",
+      name: "Kran Air 1/2inch",
       qty: -35,
       price: 25000,
     },
     {
       date: "15 Feb 2026",
       ref: "SO-2026-005",
-      name: "Toples Plastik 5 Liter",
+      name: "Bata Ringan 60 x 20 x 10 cm",
       qty: -28,
       price: 28000,
     },
     {
       date: "14 Feb 2026",
       ref: "SO-2026-006",
-      name: "Baskom Plastik 30cm",
+      name: "Lem Pipa PVC 40 gram",
       qty: -60,
       price: 12000,
     },
     {
       date: "14 Feb 2026",
       ref: "PO-2026-003",
-      name: "Tempat Sampah Plastik 25 Liter",
+      name: "Sekop Pasir",
       qty: 80,
       price: 55000,
     },
     {
       date: "13 Feb 2026",
       ref: "SO-2026-007",
-      name: "Jerigen Plastik 5 Liter",
+      name: "Wood Filler 1Kg",
       qty: -40,
       price: 32000,
     },
     {
       date: "13 Feb 2026",
       ref: "SO-2026-008",
-      name: "Galon Air Plastik 19 Liter",
+      name: "Wood Filler 1Kg",
       qty: -22,
       price: 65000,
     },
@@ -235,13 +235,57 @@ const headers = activeTab === "product" ? productHeader : orderHeader;
           </button>
         </div>
 
-        {/* FILTER */}
-        <button
-            onClick={handleToggleFilter}
-            className="w-[40px] h-[40px] bg-white rounded-full flex items-center justify-center cursor-pointer shadow hover:opacity-80 transition"
-        >
-            <img src="/icons/Date.png" className="w-[20px] h-[20px]" />
-        </button>
+       {/* FILTER */}
+{/* FILTER */}
+<div className="flex gap-3">
+
+  {/* ALL */}
+  <button
+    onClick={() => setFilterType("all")}
+    className={`w-[40px] h-[40px] rounded-full flex items-center justify-center cursor-pointer shadow transition-all duration-200
+      ${
+        filterType === "all"
+          ? "bg-[#702BF0] scale-105"
+          : "bg-white hover:scale-105 hover:shadow-md"
+      }`}
+  >
+    <img
+      src="/icons/all.png"
+      className={`w-[20px] h-[20px] ${
+        filterType === "all"
+          ? "brightness-0 invert"
+          : ""
+      }`}
+    />
+  </button>
+
+  {/* IN */}
+  <button
+    onClick={() => setFilterType("in")}
+    className="cursor-pointer transition-all duration-200 hover:scale-105"
+  >
+    <img
+      src="/icons/in.png"
+      className={`w-[40px] h-[40px] object-contain ${
+        filterType === "in" ? "scale-115" : ""
+      }`}
+    />
+  </button>
+
+  {/* OUT */}
+  <button
+    onClick={() => setFilterType("out")}
+    className="cursor-pointer transition-all duration-200 hover:scale-105"
+  >
+    <img
+      src="/icons/out.png"
+      className={`w-[40px] h-[40px] object-contain ${
+        filterType === "out" ? "scale-115" : ""
+      }`}
+    />
+  </button>
+
+</div>
 
       </div>
 

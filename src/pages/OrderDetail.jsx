@@ -8,81 +8,61 @@ export default function OrderDetail() {
   // 🔥 DUMMY DATA (1 ORDER)
   const orderItems = [
     {
-      name: "Kotak Makan Plastik",
-      variant: "1000 ml",
-      type: "Transparan",
+      name: "Semen Portland 40 kg",
       qty: 200,
       status: "Safe",
       warehouse: "GD-1012",
     },
     {
-      name: "Botol Plastik PET",
-      variant: "600 ml",
-      type: "Bening",
+      name: "Cat Tembok Interior 5 Kg",
       qty: 500,
       status: "Safe",
       warehouse: "WH-2027",
     },
     {
-      name: "Ember Plastik",
-      variant: "20 Liter",
-      type: "Merah",
+      name: "Kuas Cat 3 Inch",
       qty: 80,
       status: "Warning",
       warehouse: "ST-1008",
     },
     {
-      name: "Gelas Plastik",
-      variant: "220 ml",
-      type: "Transparan",
+      name: "Besi Beton 10mm x 12mm",
       qty: 2000,
       status: "Safe",
       warehouse: "WR-2015",
     },
     {
-      name: "Toples Plastik",
-      variant: "5 Liter",
-      type: "Biru",
+      name: "Sekop Pasir",
       qty: 120,
       status: "Full",
       warehouse: "DG-1019",
     },
     {
-      name: "Jerigen Plastik",
-      variant: "5 Liter",
-      type: "Kuning",
+      name: "Wood Filler 1 Kg",
       qty: 90,
       status: "Safe",
       warehouse: "ST-2033",
     },
     {
-      name: "Ember Plastik",
-      variant: "10 Liter",
-      type: "Hijau",
+      name: "Tangga Alumunium 1.5 Meter",
       qty: 150,
       status: "Warning",
       warehouse: "WH-1004",
     },
     {
-      name: "Kotak Makan Plastik",
-      variant: "750 ml",
-      type: "Pink",
+      name: "Tandon Air 500 Liter",
       qty: 180,
       status: "Warning",
       warehouse: "GD-2021",
     },
     {
-      name: "Baskom Plastik",
-      variant: "30 cm",
-      type: "Orange",
+      name: "Paku Kayu 3inch (kg)",
       qty: 140,
       status: "Full",
       warehouse: "WR-1016",
     },
     {
-      name: "Tempat Sampah Plastik",
-      variant: "25 Liter",
-      type: "Abu-abu",
+      name: "Kran Air 1/2 Inch",
       qty: 60,
       status: "Full",
       warehouse: "DG-2009",
@@ -146,11 +126,9 @@ export default function OrderDetail() {
       <div id="pdf-content" className="bg-white text-black rounded-2xl p-6">
 
         {/* HEADER TABLE */}
-        <div className="grid grid-cols-7 text-[14px] leading-[21px] font-medium text-[#1D1D1D] px-[20px] py-[30px] gap-[20px]">
+        <div className="grid grid-cols-[60px_2fr_1fr_1fr_1.5fr] text-[14px] leading-[21px] font-medium text-[#1D1D1D] px-[20px] py-[30px] gap-[20px]">
           <span>No</span>
           <span>Item</span>
-          <span>Variant</span>
-          <span>Type</span>
           <span>Quantity</span>
           <span>Status</span>
           <span>Warehouse Code</span>
@@ -160,12 +138,10 @@ export default function OrderDetail() {
         {orderItems.map((item, i) => (
           <div
             key={i}
-            className="grid grid-cols-7 items-center p-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] hover:bg-gray-50 transition"
+            className="grid grid-cols-[60px_2fr_1fr_1fr_1.5fr] items-center p-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] hover:bg-gray-50 transition"
           >
             <span>{i + 1}</span>
             <span>{item.name}</span>
-            <span>{item.variant}</span>
-            <span>{item.type}</span>
 
             {/* QTY */}
             <span>{item.qty}</span>

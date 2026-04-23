@@ -30,30 +30,22 @@ export default function WarehouseDetail() {
   // 🔥 DATA YANG ADA
   const items = [
     {
-      name: "Botol Plastik PET",
-      variant: "600 ml",
-      type: "Bening",
+      name: "Semen Portland 40Kg",
       max: 500,
       total: 400,
     },
     {
-      name: "Kotak Makan Plastik",
-      variant: "1000 ml",
-      type: "Transparan",
+      name: "Cat Tembok Interior 5Kg",
       max: 300,
       total: 50,
     },
     {
-      name: "Ember Plastik",
-      variant: "20 Liter",
-      type: "Merah",
+      name: "Kuas Cat 3Inch",
       max: 150,
       total: 0,
     },
     {
-      name: "Gelas Plastik",
-      variant: "1 Liter",
-      type: "Merah",
+      name: "Sekop Pasir",
       max: 150,
       total: 150,
     },
@@ -84,8 +76,6 @@ export default function WarehouseDetail() {
 
   const [form, setForm] = useState({
     name: "",
-    variant: "",
-    type: "",
     max: "",
     total: "",
   });
@@ -109,8 +99,6 @@ export default function WarehouseDetail() {
     return {
       code: `${prefix}-${String(i + 1).padStart(3, "0")}`,
       name: "",
-      variant: "",
-      type: "",
       max: "",
       total: "",
       status: "",
@@ -166,11 +154,9 @@ export default function WarehouseDetail() {
       <div className="bg-white rounded-2xl overflow-hidden">
 
         {/* HEADER TABLE */}
-        <div className="grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr_1fr_80px] px-6 py-4 text-[14px] font-medium text-[#1D1D1D] text-[14px] leading-[21px] font-medium ">
+        <div className="grid grid-cols-[140px_2fr_1fr_1fr_1fr_100px] px-6 py-4 text-[14px] font-medium text-[#1D1D1D] text-[14px] leading-[21px] font-medium ">
           <span>Code</span>
           <span>Item</span>
-          <span>Type</span>
-          <span>Variant</span>
           <span>Max Item</span>
           <span>Total Item</span>
           <span>Status</span>
@@ -184,7 +170,7 @@ export default function WarehouseDetail() {
           return (
             <div
               key={i}
-              className="grid grid-cols-[120px_1fr_1fr_1fr_1fr_1fr_1fr_80px] px-6 py-4 text-[14px] leading-[21px] border-b last:border-none items-center hover:bg-gray-50 transition"
+              className="grid grid-cols-[140px_2fr_1fr_1fr_1fr_100px] px-6 py-4 text-[14px] leading-[21px] border-b last:border-none items-center hover:bg-gray-50 transition"
             >
               {/* CODE */}
               <span className="font-semibold">{item.code}</span>
@@ -192,12 +178,6 @@ export default function WarehouseDetail() {
               {/* DATA */}
               <span className={hasData ? "" : "text-gray-300"}>
                 {item.name || "-"}
-              </span>
-              <span className={hasData ? "" : "text-gray-300"}>
-                {item.type || "-"}
-              </span>
-              <span className={hasData ? "" : "text-gray-300"}>
-                {item.variant || "-"}
               </span>
               <span className={hasData ? "" : "text-gray-300"}>
                 {item.max || "-"}
