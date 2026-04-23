@@ -233,7 +233,7 @@ export default function WarehouseDetail() {
                     }}
                     className="hover:scale-110 transition cursor-pointer">
                     <img
-                      src="/icons/Transfer.png" 
+                      src="/icons/More.png" 
                       className="w-[18px] opacity-60 hover:opacity-100"
                     />
                   </button>

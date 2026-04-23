@@ -4,106 +4,165 @@ import { useNavigate } from "react-router-dom";
 export default function Cashier() {
     const categories = [
         { name: "All Item", icon: "/icons/category.png" },
-        { name: "Botol & Tumbler", icon: "/icons/category.png" },
-        { name: "Wadah Makanan", icon: "/icons/category.png" },
-        { name: "Kantong & Kemasan", icon: "/icons/category.png" },
-        { name: "Peralatan Rumah", icon: "/icons/category.png" },
-        { name: "Penyimpanan", icon: "/icons/category.png" },
-        { name: "Peralatan Makan", icon: "/icons/category.png" },
-        { name: "Perlengkapan", icon: "/icons/category.png" },
+        { name: "Semen", icon: "/icons/category.png" },
+        { name: "Cat", icon: "/icons/category.png" },
+        { name: "Keramik", icon: "/icons/category.png" },
+        { name: "Pipa", icon: "/icons/category.png" },
+        { name: "Baja Ringan", icon: "/icons/category.png" },
+        { name: "Alat Cat", icon: "/icons/category.png" },
+        { name: "Paku & Baut", icon: "/icons/category.png" },
+        { name: "Saniter", icon: "/icons/category.png" },
+        { name: "Aksesori Pintu", icon: "/icons/category.png" },   
+        { name: "Besi", icon: "/icons/category.png" },
+        { name: "Bata", icon: "/icons/category.png" },
+        { name: "Elektrikal", icon: "/icons/category.png" },
+        { name: "Atap", icon: "/icons/category.png" },
+        { name: "Lem", icon: "/icons/category.png" },
+        { name: "Alat Kerja", icon: "/icons/category.png" },
+        { name: "Tangki Air", icon: "/icons/category.png" },
+        { name: "Finishing", icon: "/icons/category.png" },
     ];
 
     const products = [
         {
-            name: "Keramik",
-            category: "Botol & Tumbler",
-            price: "20.000",
-            stock: "200pcs",
-            image: "/cashier.png",
+            name: "Semen Portland 40 kg",
+            category: "Semen",
+            price: "65.000",
+            stock: "50pcs",
+            image: "/image/SEMEN.webp",
         },
         {
-            name: "Piring",
-            category: "Wadah Makanan",
+            name: "Cat Tembok Interior 5 kg",
+            category: "Cat",
+            price: "185.000",
+            stock: "80cat",
+            image: "/image/CAT TEMBOK.jpg",
+        },
+        {
+            name: "Keramik Lantai 40x40cm",
+            category: "Keramik",
+            price: "75.000",
+            stock: "900dus",
+            image: "/image/KERAMIK.webp",
+        },
+        {
+            name: "Pipa PVC AW 1/2inch x 4m",
+            category: "Pipa",
+            price: "35.000",
+            stock: "600pcs",
+            image: "/image/PIPA PVC.jpg",
+        },
+        {
+            name: "Baja Ringan 0.75mm x 6 m",
+            category: "Baja Ringan",
+            price: "95.000",
+            stock: "900pcs",
+            image: "/image/BAJA RINGAN.webp",
+        },
+        {
+            name: "Kuas Cat 3inch",
+            category: "Alat Cat",
             price: "15.000",
-            stock: "150pcs",
-            image: "/cashier.png",
+            stock: "550pcs",
+            image: "/image/KUAS .jpg",
         },
         {
-            name: "Botol",
-            category: "Kantong & Kemasan",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+            name: "Paku Kayu 3inch (kg)",
+            category: "Paku & Baut",
+            price: "20.000",
+            stock: "200kg",
+            image: "/image/PAKU KAYU.jpeg",
         },
         {
-            name: "Botol",
-            category: "Peralatan Rumah",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+            name: "Kran Air 1/2inch",
+            category: "Saniter",
+            price: "45.000",
+            stock: "350pcs",
+            image: "/image/KRAN AIR.webp",
         },
         {
-            name: "Botol",
-            category: "Penyimpanan",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+            name: "Mortar Instan 40Kg",
+            category: "Semen",
+            price: "85.000",
+            stock: "230pcs",
+            image: "/image/MORTAR INSTAN.webp",
         },
         {
-            name: "Botol",
-            category: "Peralatan Makanan",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+            name: "Bata Ringan 60 x 20 x 10 cm",
+            category: "Bata",
+            price: "10.000",
+            stock: "1200pcs",
+            image: "/image/BATA RINGAN.jpeg",
         },
         {
-            name: "Botol",
-            category: "Kantong & Kemasan",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+            name: "Besi Beton 10mm x 12mm",
+            category: "Besi",
+            price: "82.000",
+            stock: "120pcs",
+            image: "/image/BESI BETON POLOS.png",
         },
         {
-            name: "Botol",
-            category: "Peralatan Makan",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+            name: "Grendel Pintu 4inch",
+            category: "Aksesori Pintu",
+            price: "25.000",
+            stock: "80pcs",
+            image: "/image/GRENDEL PINTU.webp",
         },
         {
-            name: "Botol",
-            category: "Penyimpanan",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+            name: "Kabel Listrik NYM 2 x 1.5mm",
+            category: "Elektrikal",
+            price: "12.000",
+            stock: "500meter",
+            image: "/image/KABEL LISTRIK.jpg",
         },
-        {
-            name: "Botol",
-            category: "Wadah Makanan",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+         {
+            name: "Atap Galvalum 1.8 m x 80 cm",
+            category: "Atap",
+            price: "70.000",
+            stock: "170pcs",
+            image: "/image/ATAP GALVANUM.webp",
         },
-        {
-            name: "Botol",
-            category: "Botol & Tumbler",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+         {
+            name: "Lem Pipa PVC 40 gram",
+            category: "Lem",
+            price: "10.000",
+            stock: "70pcs",
+            image: "/image/LEM PIPA PVC.png",
         },
-        {
-            name: "Botol",
-            category: "Botol & Tumbler",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+         {
+            name: "Tangga Alumunium 1.5meter",
+            category: "Alat Kerja",
+            price: "450.000",
+            stock: "25pcs",
+            image: "/image/TANGGA ALUMINIUM.jpg",
         },
-        {
-            name: "Botol",
-            category: "Botol & Tumbler",
-            price: "18.000",
-            stock: "100pcs",
-            image: "/cashier.png",
+         {
+            name: "Tandon Air 500Liter",
+            category: "Tangki Air",
+            price: "1.200.000",
+            stock: "10",
+            image: "/image/TANDON AIR.jpg",
+        },
+         {
+            name: "Engsel Pintu 4 inch",
+            category: "Aksesori Pintu",
+            price: "40.000",
+            stock: "60Pasang",
+            image: "/image/ENGSEL PINTU.jpg",
+        },
+         {
+            name: "Sekop Pasir",
+            category: "Alat Kerja",
+            price: "55.000",
+            stock: "32pcs",
+            image: "/image/SEKOP.jpg",
+        },
+         {
+            name: "Wood Filler 1Kg",
+            category: "Finishing",
+            price: "35.000",
+            stock: "40pcs",
+            image: "/image/WOOD FILLER.avif",
         },
     ];
 
@@ -129,8 +188,11 @@ export default function Cashier() {
         return ["Kecil","Sedang","Besar"];
         };
     
-    selectedProduct?.stock
-    const stockNumber = parseInt(selectedProduct?.stock) || 0;
+    const fullStock = selectedProduct?.stock || "";
+
+    const stockNumber = parseInt(fullStock) || 0;
+
+    const stockUnit = fullStock.replace(/[0-9]/g, "") || "";
     const [cart, setCart] = useState([]);
     const handleAddToCart = () => {
         if (!selectedProduct) return;
@@ -145,8 +207,6 @@ export default function Cashier() {
             name: selectedProduct.name,
             price: priceNumber,
             image: selectedProduct.image,
-            variant,
-            type,
             qty,
         };
 
@@ -161,8 +221,6 @@ export default function Cashier() {
         // reset + close modal
         setShowModal(false);
         setQty(1);
-        setType("");
-        setVariant("Merah");
     };
     
     const [showCart, setShowCart] = useState(false);
@@ -202,7 +260,7 @@ export default function Cashier() {
 
         {/* FILTER */}
         
-        <div className="flex gap-[20px] overflow-x-auto pb-2">
+        <div className="flex flex-wrap gap-[20px] overflow-x-auto pb-2">
 
             {categories.map((cat) => {
                 const isActive = activeCategory === cat.name;
@@ -314,7 +372,7 @@ export default function Cashier() {
                             setType("");
                             setQty(1);
                             setShowModal(true)}}
-                        className="w-[252px] h-[41px] mt-4 mx-auto block bg-[#702BF0] text-[#EAEAEA] text-[14px] py-[10px] px-[30px] rounded-full cursor-pointer hover:opacity-90 transition">
+                        className="w-full h-[41px] mt-4 mx-auto block bg-[#702BF0] text-[#EAEAEA] text-[14px] py-[10px] px-[30px] rounded-full cursor-pointer hover:opacity-90 transition">
                          Add to Cart
                     </button>
 
@@ -347,45 +405,9 @@ export default function Cashier() {
                     <div className="flex flex-col h-full">
                         <div className="flex-1 overflow-y-auto">
                         {/* NAMA */}
-                        <h2 className="text-[36px] leading-[54px] font-semibold mb-4">
+                        <h2 className="text-[36px] leading-[54px] font-semibold mb-10">
                         {selectedProduct.name}
                         </h2>
-
-                        {/* VARIANT */}
-                        <p className="text-[14px] leading-[21px] font-medium mb-2">Variant</p>
-                        <div className="flex flex-wrap gap-[20px] mb-4">
-                        {variants.map((v) => (
-                            <button
-                            key={v}
-                            onClick={() => setVariant(v)}
-                            className={`w-[105px] h-[41px] px-[30px] py-[10px] rounded-full text-[14px] font-normal leading-[21px] cursor-pointer hover:opacity-80 transition ${
-                                variant === v
-                                ? "bg-[#702BF0] text-white"
-                                : "bg-[#D1D5D8] text-[#1D1D1D]"
-                            }`}
-                            >
-                            {v}
-                            </button>
-                        ))}
-                        </div>
-
-                        {/* TYPE */}
-                        <p className="text-[14px] leading-[21px] font-medium mb-2 text-[#1D1D1D]">Type</p>
-                        <div className="flex gap-[10px] mb-4">
-                        {getTypes().map((t) => (
-                            <button
-                            key={t}
-                            onClick={() => setType(t)}
-                            className={`px-[30px] py-[10px] rounded-full text-[14px] leading-[21px] font-normal cursor-pointer hover:opacity-80 transition ${
-                                type === t
-                                ? "bg-[#702BF0] text-white"
-                                : "bg-[#D1D5D8] text-[#1D1D1D]"
-                            }`}
-                            >
-                            {t}
-                            </button>
-                        ))}
-                        </div>
 
                         {/* QTY */}
                         <div className="flex items-center gap-[10px] mb-6">
@@ -433,7 +455,7 @@ export default function Cashier() {
 
                                 {/* STOCK */}
                                 <span className="text-[14px] leading-[21px] font-medium text-[#D1D5D8]">
-                                / {stockNumber}
+                                / {stockNumber} {stockUnit}
                                 </span>
 
                             </div>
@@ -528,10 +550,6 @@ export default function Cashier() {
                             <div>
                             <p className="text-[14px] leading-[21px] font-medium text-[#1D1D1D]">
                                 {item.name}
-                            </p>
-
-                            <p className="text-[12px] leading-[18px] font-medium text-[#D1D5D8]">
-                                {item.variant} • {item.type}
                             </p>
                             </div>
 

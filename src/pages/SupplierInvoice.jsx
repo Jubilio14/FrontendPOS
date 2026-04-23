@@ -21,11 +21,9 @@ export default function SupplierInvoice() {
       <div className="bg-white rounded-2xl p-6 gap-[30px]">
 
         {/* HEADER */}
-        <div className="grid grid-cols-[50px_2fr_1fr_1fr_1fr_1fr_1.5fr] px-[20px] py-[30px] gap-[20px] text-[14px] leading-[21px] font-medium text-[#1D1D1D]">
+        <div className="grid grid-cols-[60px_2.5fr_1fr_1fr_1.5fr] px-[20px] py-[30px] gap-[20px] text-[14px] leading-[21px] font-medium text-[#1D1D1D]">
           <span>No</span>
           <span>Item</span>
-          <span>Variant</span>
-          <span>Type</span>
           <span>Price (Rp)</span>
           <span>Quantity</span>
           <span>Total Price (Rp)</span>
@@ -40,12 +38,10 @@ export default function SupplierInvoice() {
           cart.map((item, i) => (
             <div
               key={i}
-              className="grid grid-cols-[50px_2fr_1fr_1fr_1fr_1fr_1.5fr] gap-[20px] p-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] "
+              className="grid grid-cols-[60px_2.5fr_1fr_1fr_1.5fr] gap-[20px] p-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D] "
             >
               <span>{i + 1}</span>
               <span>{item.name}</span>
-              <span>{item.variant}</span>
-              <span>{item.type || "-"}</span>
               <span>{item.price.toLocaleString("id-ID")}</span>
               <span>{item.qty}</span>
               <span className="text-[#702BF0] font-medium">

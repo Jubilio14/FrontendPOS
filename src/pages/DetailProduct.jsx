@@ -17,14 +17,24 @@ export default function DetailProduct() {
     }, []);
 
     const categories = [
-        { name: "All Item" },
-        { name: "Botol & Tumbler" },
-        { name: "Wadah Makanan" },
-        { name: "Kantong & Kemasan" },
-        { name: "Peralatan Rumah" },
-        { name: "Penyimpanan" },
-        { name: "Peralatan Makan" },
-        { name: "Perlengkapan" },
+         { name: "All Item" },
+        { name: "Semen" },
+        { name: "Cat" },
+        { name: "Keramik" },
+        { name: "Pipa" },
+        { name: "Baja Ringan" },
+        { name: "Alat Cat" },
+        { name: "Paku & Baut" },
+        { name: "Saniter" },
+        { name: "Aksesori Pintu" },   
+        { name: "Besi" },
+        { name: "Bata" },
+        { name: "Elektrikal" },
+        { name: "Atap" },
+        { name: "Lem" },
+        { name: "Alat Kerja" },
+        { name: "Tangki Air" },
+        { name: "Finishing" },
     ];
     const [showEditProduct, setShowEditProduct] = useState(false);
     const [productName, setProductName] = useState("");
@@ -36,7 +46,7 @@ export default function DetailProduct() {
         setProductName(product.name);
         setProductCategory(product.category);
         setPrice(product.price);
-        setStock(product.stock);
+        setStock(parseInt(product.stock) || "");
 
         setShowEditProduct(true);
     };
@@ -138,50 +148,9 @@ export default function DetailProduct() {
             Rp {product.price.toLocaleString("id-ID")}
           </p>
 
-          {/* VARIANT */}
-          <div className="mt-4">
-            <p className="text-[14px] leading-[21px] font-normal mb-2">Variant</p>
-            <div className="flex flex-wrap gap-2">
-                {["Hitam", "Putih", "Biru", "Pink"].map((v, i) => (
-                <button
-                    key={i}
-                    onClick={() => setSelectedVariant(v)}
-                    className={`px-[20px] py-[8px] rounded-full text-[12px] leading-[18px] font-normal transition cursor-pointer
-                    ${
-                    selectedVariant === v
-                        ? "bg-[#702BF0] text-white"
-                        : "bg-[#EAEAEA] text-[#1D1D1D]"
-                    }`}
-                >
-                    {v}
-                </button>
-                ))}
-            </div>
-          </div>
-
-          {/* TYPE */}
-          <div className="mt-4">
-            <p className="text-[14px] leading-[21px] font-normal mb-2">Type</p>
-            <div className="flex gap-2">
-                {["500ml", "750ml", "1000ml"].map((t, i) => (
-                <button
-                    key={i}
-                    onClick={() => setSelectedType(t)}
-                    className={`px-[20px] py-[8px] rounded-full text-[12px] leading-[18px] font-normal transition cursor-pointer
-                    ${
-                    selectedType === t
-                        ? "bg-[#702BF0] text-white"
-                        : "bg-[#EAEAEA] text-[#1D1D1D]"
-                    }`}
-                >
-                    {t}
-                </button>
-                ))}
-            </div>
-          </div>
 
           {/* DETAIL */}
-          <div className="mt-6">
+          <div className="mt-10">
             <h3 className="font-semibold text-[24px] leading-[36px] text-[#1D1D1D] mb-2">
               Detail Product
             </h3>

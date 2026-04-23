@@ -266,7 +266,7 @@ export default function Handover() {
                     />
               ) : (
                 <img
-                  src="/icons/Transfer.png"
+                  src="/icons/More.png"
                   onClick={() => openTransfer(i)}
                   className="w-[16px] cursor-pointer hover:scale-110 transition"
                 />

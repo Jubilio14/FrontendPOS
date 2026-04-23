@@ -57,22 +57,20 @@ export default function Invoice() {
       <div className="space-y-4">
 
         {/* HEADER */}
-        <div className="grid grid-cols-[40px_2fr_1fr_1fr_60px_1fr_1fr_40px] text-xs text-gray-400 pb-2 border-b">
+        <div className="grid grid-cols-[40px_2fr_60px_1fr_1fr_40px] text-xs text-gray-400 pb-2 border-b">
             <span>No</span>
             <span>Product</span>
-            <span>Size</span>
-            <span>Variant</span>
             <span>Qty</span>
             <span>Price</span>
             <span>Total</span>
-            <span></span>
+            <span>Action</span>
         </div>
 
         {/* ROW */}
         {cart.map((item, i) => (
             <div
             key={i}
-            className="grid grid-cols-[40px_2fr_1fr_1fr_60px_1fr_1fr_40px] items-center text-sm border-b pb-3"
+            className="grid grid-cols-[40px_2fr_60px_1fr_1fr_40px] items-center text-sm border-b pb-3"
             >
 
             {/* NO */}
@@ -88,12 +86,6 @@ export default function Invoice() {
                 <p className="font-medium text-[14px] leading-[21px] text-[#1D1D1D]">{item.name}</p>
                 </div>
             </div>
-
-            {/* SIZE (optional dummy) */}
-            <span className="font-medium text-[14px] leading-[21px] text-[#1D1D1D]">{item.type}</span>
-
-            {/* VARIANT */}
-            <span className="font-medium text-[14px] leading-[21px] text-[#1D1D1D]">{item.variant}</span>
 
             {/* QTY */}
             <span className="font-medium text-[14px] leading-[21px] text-[#1D1D1D]">{item.qty}</span>

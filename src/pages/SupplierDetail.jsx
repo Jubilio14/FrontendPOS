@@ -15,26 +15,145 @@ export default function SupplierDetail() {
   // 🔥 PRODUCTS (DUMMY)
   const products = [
     {
-      name: "Keramik",
-      category: "Botol & Tumbler",
-      price: "20.000",
-      stock: "200pcs",
-      image: "/cashier.png",
-    },
-    {
-      name: "Piring",
-      category: "Wadah Makanan",
-      price: "15.000",
-      stock: "150pcs",
-      image: "/cashier.png",
-    },
-    {
-      name: "Botol",
-      category: "Kantong & Kemasan",
-      price: "18.000",
-      stock: "100pcs",
-      image: "/cashier.png",
-    },
+            name: "Semen Portland 40 kg",
+            category: "Semen",
+            price: "65.000",
+            stock: "50pcs",
+            image: "/image/SEMEN.webp",
+        },
+        {
+            name: "Cat Tembok Interior 5 kg",
+            category: "Cat",
+            price: "185.000",
+            stock: "80cat",
+            image: "/image/CAT TEMBOK.jpg",
+        },
+        {
+            name: "Keramik Lantai 40x40cm",
+            category: "Keramik",
+            price: "75.000",
+            stock: "900dus",
+            image: "/image/KERAMIK.webp",
+        },
+        {
+            name: "Pipa PVC AW 1/2inch x 4m",
+            category: "Pipa",
+            price: "35.000",
+            stock: "600pcs",
+            image: "/image/PIPA PVC.jpg",
+        },
+        {
+            name: "Baja Ringan 0.75mm x 6 m",
+            category: "Baja Ringan",
+            price: "95.000",
+            stock: "900pcs",
+            image: "/image/BAJA RINGAN.webp",
+        },
+        {
+            name: "Kuas Cat 3inch",
+            category: "Alat Cat",
+            price: "15.000",
+            stock: "550pcs",
+            image: "/image/KUAS .jpg",
+        },
+        {
+            name: "Paku Kayu 3inch (kg)",
+            category: "Paku & Baut",
+            price: "20.000",
+            stock: "200kg",
+            image: "/image/PAKU KAYU.jpeg",
+        },
+        {
+            name: "Kran Air 1/2inch",
+            category: "Saniter",
+            price: "45.000",
+            stock: "350pcs",
+            image: "/image/KRAN AIR.webp",
+        },
+        {
+            name: "Mortar Instan 40Kg",
+            category: "Semen",
+            price: "85.000",
+            stock: "230pcs",
+            image: "/image/MORTAR INSTAN.webp",
+        },
+        {
+            name: "Bata Ringan 60 x 20 x 10 cm",
+            category: "Bata",
+            price: "10.000",
+            stock: "1200pcs",
+            image: "/image/BATA RINGAN.jpeg",
+        },
+        {
+            name: "Besi Beton 10mm x 12mm",
+            category: "Besi",
+            price: "82.000",
+            stock: "120pcs",
+            image: "/image/BESI BETON POLOS.png",
+        },
+        {
+            name: "Grendel Pintu 4inch",
+            category: "Aksesori Pintu",
+            price: "25.000",
+            stock: "80pcs",
+            image: "/image/GRENDEL PINTU.webp",
+        },
+        {
+            name: "Kabel Listrik NYM 2 x 1.5mm",
+            category: "Elektrikal",
+            price: "12.000",
+            stock: "500meter",
+            image: "/image/KABEL LISTRIK.jpg",
+        },
+         {
+            name: "Atap Galvalum 1.8 m x 80 cm",
+            category: "Atap",
+            price: "70.000",
+            stock: "170pcs",
+            image: "/image/ATAP GALVANUM.webp",
+        },
+         {
+            name: "Lem Pipa PVC 40 gram",
+            category: "Lem",
+            price: "10.000",
+            stock: "70pcs",
+            image: "/image/LEM PIPA PVC.png",
+        },
+         {
+            name: "Tangga Alumunium 1.5meter",
+            category: "Alat Kerja",
+            price: "450.000",
+            stock: "25pcs",
+            image: "/image/TANGGA ALUMINIUM.jpg",
+        },
+         {
+            name: "Tandon Air 500Liter",
+            category: "Tangki Air",
+            price: "1.200.000",
+            stock: "10",
+            image: "/image/TANDON AIR.jpg",
+        },
+         {
+            name: "Engsel Pintu 4 inch",
+            category: "Aksesori Pintu",
+            price: "40.000",
+            stock: "60Pasang",
+            image: "/image/ENGSEL PINTU.jpg",
+        },
+         {
+            name: "Sekop Pasir",
+            category: "Alat Kerja",
+            price: "55.000",
+            stock: "32pcs",
+            image: "/image/SEKOP.jpg",
+        },
+         {
+            name: "Wood Filler 1Kg",
+            category: "Finishing",
+            price: "35.000",
+            stock: "40pcs",
+            image: "/image/WOOD FILLER.avif",
+        },
   ];
 
   // 🔥 MODAL STATE
@@ -176,41 +295,6 @@ export default function SupplierDetail() {
                 {selectedProduct.name}
             </h2>
 
-            {/* VARIANT */}
-            <p className="text-[14px] font-medium mb-2">Variant</p>
-            <div className="flex flex-wrap gap-3 mb-6">
-                {variants.map((v) => (
-                <button
-                    key={v}
-                    onClick={() => setVariant(v)}
-                    className={`px-4 py-2 rounded-full text-sm transition
-                    ${variant === v
-                        ? "bg-[#702BF0] text-white"
-                        : "bg-[#EAEAEA] text-[#1D1D1D]"}
-                    `}
-                >
-                    {v}
-                </button>
-                ))}
-            </div>
-
-            {/* TYPE */}
-            <p className="text-[14px] font-medium mb-2">Type</p>
-            <div className="flex flex-wrap gap-3 mb-6">
-                {getTypes().map((t) => (
-                <button
-                    key={t}
-                    onClick={() => setType(t)}
-                    className={`px-4 py-2 rounded-full text-sm transition
-                    ${type === t
-                        ? "bg-[#702BF0] text-white"
-                        : "bg-[#EAEAEA]"}
-                    `}
-                >
-                    {t}
-                </button>
-                ))}
-            </div>
 
             {/* QTY */}
             <p className="text-[14px] font-medium mb-2">Quantity</p>
@@ -349,9 +433,6 @@ export default function SupplierDetail() {
                     <div className="flex justify-between">
                     <div>
                         <p className="text-sm font-medium">{item.name}</p>
-                        <p className="text-xs text-gray-400">
-                        {item.variant} • {item.type}
-                        </p>
                     </div>
 
                     {/* DELETE */}
