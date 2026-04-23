@@ -45,6 +45,14 @@ export default function Home() {
   const categoryPoints = categoryData
     .map((val, i) => `${(i * 300) / (categoryData.length - 1)},${100 - val}`)
     .join(" ");
+  const [showTargetModal, setShowTargetModal] = useState(false);
+
+  const [targetAmount, setTargetAmount] = useState(30000000); // target
+  const [currentAmount, setCurrentAmount] = useState(27000000); // progress sekarang
+  const percentage = Math.min(
+    Math.round((currentAmount / targetAmount) * 100),
+    100
+  );
 
   return (
     <div className="space-y-[50px]">
@@ -95,12 +103,91 @@ export default function Home() {
 
        </div>
 
-        {/* Target (kosong dulu) */}
-        <div className="bg-white p-6 rounded-2xl shadow-sm">
-          <h2 className="text-[24px] leading-[36px] font-semibold text-black">
-            Target
-          </h2>
+        <div className="bg-white p-6 rounded-2xl shadow-sm relative">
+
+  {/* TITLE */}
+  <div className="flex justify-between items-center mb-6">
+    <h2 className="text-[24px] leading-[36px] font-semibold text-black">
+      Target
+    </h2>
+
+    {/* EDIT */}
+    {targetAmount > 0 && (
+      <button
+        onClick={() => setShowTargetModal(true)}
+        className="cursor-pointer hover:scale-105 transition"
+      >
+        <img
+          src="/icons/EditPurple.png"
+          className="w-[18px] h-[18px]"
+        />
+      </button>
+    )}
+  </div>
+
+  {/* IF EMPTY */}
+  {targetAmount <= 0 ? (
+    <div className="flex flex-col items-center justify-center py-10 gap-4">
+      <p className="text-[#9CA3AF] text-sm">
+        No target has been set yet
+      </p>
+
+      <button
+        onClick={() => setShowTargetModal(true)}
+        className="px-6 py-2 bg-[#702BF0] text-white rounded-full hover:opacity-80 transition"
+      >
+        Set Target
+      </button>
+    </div>
+  ) : (
+    /* PROGRESS */
+    <div className="flex flex-col items-center">
+
+      <div className="relative w-[320px] h-[320px]">
+
+        <svg className="w-full h-full rotate-[-90deg]">
+
+            {/* background */}
+            <circle
+                cx="160"
+                cy="160"
+                r="125"
+                stroke="#E5E7EB"
+                strokeWidth="14"
+                fill="none"
+            />
+
+            {/* progress */}
+            <circle
+                cx="160"
+                cy="160"
+                r="125"
+                stroke="#702BF0"
+                strokeWidth="14"
+                fill="none"
+                strokeLinecap="round"
+                strokeDasharray={785}
+                strokeDashoffset={785 - (785 * percentage) / 100}
+            />
+            </svg>
+
+        {/* CENTER TEXT */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <p className="text-[24px] font-semibold text-[#1D1D1D]">
+            {percentage}%
+          </p>
+
+          <p className="text-[12px] text-[#9CA3AF]">
+            Rp {currentAmount.toLocaleString("id-ID")}
+            /
+            Rp {targetAmount.toLocaleString("id-ID")}
+          </p>
         </div>
+      </div>
+
+    </div>
+  )}
+</div>
 
       </div>
 
@@ -243,6 +330,62 @@ export default function Home() {
 
         </div>
 
+    </div>
+
+    <div
+    className={`fixed inset-0 z-[9999] flex transition-all duration-300
+    ${showTargetModal ? "visible" : "invisible"}`}
+    >
+
+    {/* OVERLAY */}
+    <div
+        className={`flex-1 bg-black/50 transition-opacity duration-300
+        ${showTargetModal ? "opacity-100" : "opacity-0"}`}
+        onClick={() => setShowTargetModal(false)}
+    />
+
+    {/* PANEL */}
+    <div
+        className={`w-[500px] h-screen bg-white p-6 shadow-lg flex flex-col
+        transform transition-transform duration-300
+        ${showTargetModal ? "translate-x-0" : "translate-x-full"}`}
+    >
+
+        <h2 className="text-[36px] font-semibold mb-8">
+        Set Target
+        </h2>
+
+        <div className="flex flex-col gap-4">
+
+        <input
+            type="number"
+            placeholder="Input target amount"
+            value={targetAmount}
+            onChange={(e) => setTargetAmount(Number(e.target.value))}
+            className="h-[50px] bg-[#EAEAEA] rounded-full px-5 outline-none"
+        />
+
+        </div>
+
+        <div className="mt-auto flex justify-end gap-3 pt-6">
+
+        <button
+            onClick={() => setShowTargetModal(false)}
+            className="px-6 py-2 bg-[#EAEAEA] rounded-full"
+        >
+            Cancel
+        </button>
+
+        <button
+            onClick={() => setShowTargetModal(false)}
+            className="px-6 py-2 bg-[#702BF0] text-white rounded-full"
+        >
+            Save
+        </button>
+
+        </div>
+
+    </div>
     </div>
 
     </div>

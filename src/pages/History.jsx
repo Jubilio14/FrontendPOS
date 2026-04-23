@@ -234,58 +234,57 @@ const headers = activeTab === "product" ? productHeader : orderHeader;
             Order
           </button>
         </div>
+        
+        {/* FILTER */}
+        <div className="flex gap-3">
 
-       {/* FILTER */}
-{/* FILTER */}
-<div className="flex gap-3">
+          {/* ALL */}
+          <button
+            onClick={() => setFilterType("all")}
+            className={`w-[40px] h-[40px] rounded-full flex items-center justify-center cursor-pointer shadow transition-all duration-200
+              ${
+                filterType === "all"
+                  ? "bg-[#702BF0] scale-105"
+                  : "bg-white hover:scale-105 hover:shadow-md"
+              }`}
+          >
+            <img
+              src="/icons/all.png"
+              className={`w-[20px] h-[20px] ${
+                filterType === "all"
+                  ? "brightness-0 invert"
+                  : ""
+              }`}
+            />
+          </button>
 
-  {/* ALL */}
-  <button
-    onClick={() => setFilterType("all")}
-    className={`w-[40px] h-[40px] rounded-full flex items-center justify-center cursor-pointer shadow transition-all duration-200
-      ${
-        filterType === "all"
-          ? "bg-[#702BF0] scale-105"
-          : "bg-white hover:scale-105 hover:shadow-md"
-      }`}
-  >
-    <img
-      src="/icons/all.png"
-      className={`w-[20px] h-[20px] ${
-        filterType === "all"
-          ? "brightness-0 invert"
-          : ""
-      }`}
-    />
-  </button>
+          {/* IN */}
+          <button
+            onClick={() => setFilterType("in")}
+            className="cursor-pointer transition-all duration-200 hover:scale-105"
+          >
+            <img
+              src="/icons/in.png"
+              className={`w-[40px] h-[40px] object-contain ${
+                filterType === "in" ? "scale-115" : ""
+              }`}
+            />
+          </button>
 
-  {/* IN */}
-  <button
-    onClick={() => setFilterType("in")}
-    className="cursor-pointer transition-all duration-200 hover:scale-105"
-  >
-    <img
-      src="/icons/in.png"
-      className={`w-[40px] h-[40px] object-contain ${
-        filterType === "in" ? "scale-115" : ""
-      }`}
-    />
-  </button>
+          {/* OUT */}
+          <button
+            onClick={() => setFilterType("out")}
+            className="cursor-pointer transition-all duration-200 hover:scale-105"
+          >
+            <img
+              src="/icons/out.png"
+              className={`w-[40px] h-[40px] object-contain ${
+                filterType === "out" ? "scale-115" : ""
+              }`}
+            />
+          </button>
 
-  {/* OUT */}
-  <button
-    onClick={() => setFilterType("out")}
-    className="cursor-pointer transition-all duration-200 hover:scale-105"
-  >
-    <img
-      src="/icons/out.png"
-      className={`w-[40px] h-[40px] object-contain ${
-        filterType === "out" ? "scale-115" : ""
-      }`}
-    />
-  </button>
-
-</div>
+        </div>
 
       </div>
 
