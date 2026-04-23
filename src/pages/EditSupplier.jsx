@@ -283,7 +283,7 @@ export default function EditSupplier() {
       </div>
 
       {/* RIGHT PANEL */}
-      <div className="w-[400px] bg-white p-6 flex flex-col ">
+      <div className="w-[400px] h-screen sticky top-0 bg-white p-6 flex flex-col shadow-lg">
 
         <h2 className="text-[28px] font-semibold mb-6">
           Edit Supplier
