@@ -230,7 +230,7 @@ export default function Product() {
 
             {/* Kanan (Search) */}
             <div className="w-[48px] h-[48px] bg-white rounded-full shadow-sm flex items-center justify-center cursor-pointer">
-            <img src="/icons/searchIcon.png" alt="search" className="w-[24px] h-[24px]" />
+            <img src="/icons/searchPurple.png" alt="search" className="w-[24px] h-[24px]" />
             </div>
 
         </div>
