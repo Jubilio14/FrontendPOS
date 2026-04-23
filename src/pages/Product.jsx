@@ -495,7 +495,7 @@ export default function Product() {
          {/* ADD Floating  */}
         <div
             onClick={() => setShowAddMenu(true)}
-            className={`bottom-6 right-[24px] z-[10] w-[64px] h-[64px] bg-[#DF5C53] rounded-full flex items-center justify-center cursor-pointer shadow-lg relative 
+            className={`bottom-6 right-[24px] z-[10] w-[64px] h-[64px] bg-[#702BF0] rounded-full flex items-center justify-center cursor-pointer shadow-lg relative 
               ${animateCart ? "scale-125" : "scale-100"}  `}
             style={{ position: "fixed" }}
         >
