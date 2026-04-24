@@ -188,18 +188,37 @@ export default function Product() {
     ]);
 
 
-    const [activeCategory, setActiveCategory] = useState("All Item");
+    const [selectedCategories, setSelectedCategories] = useState([]);
     const [search, setSearch] = useState("");
-    const filteredProducts = products.filter((item) => {
-    const matchCategory =
-        activeCategory === "All Item" ||
-        item.category === activeCategory;
+    const [showFilter, setShowFilter] = useState(false);
+    const [sortType, setSortType] = useState("asc");
 
-    const matchSearch =
-        item.name.toLowerCase().includes(search.toLowerCase());
+    const handleCategoryChange = (category) => {
+        setSelectedCategories((prev) =>
+            prev.includes(category)
+            ? prev.filter((item) => item !== category)
+            : [...prev, category]
+        );
+        };
+    
+    const filteredProducts = products
+        .filter((item) => {
+            const matchCategory =
+            selectedCategories.length === 0 ||
+            selectedCategories.includes(item.category);
 
-    return matchCategory && matchSearch;
-    });
+            const matchSearch =
+            item.name.toLowerCase().includes(search.toLowerCase());
+
+            return matchCategory && matchSearch;
+        })
+        .sort((a, b) =>
+            sortType === "asc"
+            ? a.name.localeCompare(b.name)
+            : b.name.localeCompare(a.name)
+    );
+
+
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [variant, setVariant] = useState("Merah");
@@ -312,81 +331,90 @@ export default function Product() {
             </div>
 
             {/* Kanan (Search) */}
-            <div className="relative">
+            <div className="flex items-center gap-3 relative">
 
-            {/* ICON */}
-            <img
-                src="/icons/searchPurple.png"
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px]"
-            />
+                {/* SEARCH */}
+                <div className="relative">
+                    <img
+                    src="/icons/searchPurple.png"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px]"
+                    />
 
-            {/* INPUT */}
-            <input
-                type="text"
-                placeholder="Search product..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                className="w-[320px] h-[48px] bg-white rounded-full pl-11 pr-4 outline-none text-[14px] shadow-sm"
-            />
+                    <input
+                    type="text"
+                    placeholder="Search item..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="w-[300px] h-[48px] bg-white rounded-full pl-11 pr-4 outline-none text-[14px] shadow-sm"
+                    />
+                </div>
+
+                {/* FILTER BUTTON */}
+                <button
+                    onClick={() => setShowFilter(!showFilter)}
+                    className="w-[48px] h-[48px] bg-white rounded-full shadow-sm flex items-center justify-center cursor-pointer hover:opacity-80 transition"
+                >
+                    <img
+                    src="/icons/Polygon 1.png"
+                    className="w-[20px] h-[20px]"
+                    />
+                </button>
+
+                {showFilter && (
+                    <div className="absolute top-[70px] right-0 w-[280px] bg-white rounded-2xl shadow-lg p-5 z-50">
+
+                        <p className="font-semibold mb-3">By Alphabetical</p>
+
+                        <div className="space-y-2 mb-5">
+                            <label className="flex items-center gap-3">
+                                <input
+                                    type="radio"
+                                    checked={sortType === "asc"}
+                                    onChange={() => setSortType("asc")}
+                                />
+                                <span>Ascending (A-Z)</span>
+                            </label>
+
+                            <label className="flex items-center gap-3">
+                                <input
+                                    type="radio"
+                                    checked={sortType === "desc"}
+                                    onChange={() => setSortType("desc")}
+                                />
+                                <span>Descending (Z-A)</span>
+                            </label>
+                        </div>
+
+                        <p className="font-semibold mb-3">By Category</p>
+
+                        <div className="space-y-3 max-h-[220px] overflow-y-auto">
+
+                        {categories
+                            .filter((cat) => cat.name !== "All Item")
+                            .map((cat) => (
+                            <label
+                                key={cat.name}
+                                className="flex items-center gap-3 cursor-pointer"
+                            >
+                                <input
+                                type="checkbox"
+                                checked={selectedCategories.includes(cat.name)}
+                                onChange={() => handleCategoryChange(cat.name)}
+                                className="w-4 h-4 accent-[#702BF0]"
+                                />
+
+                                <span className="text-sm text-[#1D1D1D]">
+                                {cat.name}
+                                </span>
+                            </label>
+                        ))}
+                        </div>
+
+                    </div>
+                    )}
 
             </div>
 
-        </div>
-
-        {/* FILTER */}
-        <div className="max-w-full overflow-x-auto pb-2 scrollbar-hide">
-
-        <div className="flex gap-[20px] min-w-max">
-
-            {categories.map((cat) => {
-                const isActive = activeCategory === cat.name;
-
-                return (
-                <div
-                    key={cat.name}
-                    onClick={() => setActiveCategory(cat.name)}
-                    className={`w-[140px] h-[120px] p-3 rounded-xl cursor-pointer transition
-                    ${
-                        isActive
-                        ? "bg-[#702BF0]"
-                        : "bg-[#FFFFFF]"
-                    }`}
-                >
-                    
-
-                    {/* ICON */}
-                    <img
-                    src={cat.icon}
-                    className={`w-[24px] h-[24px] mb-2 ${
-                        isActive
-                        ? "brightness-0 invert"
-                        : "opacity-50"
-                    }`}
-                    />
-
-                    {/* TEXT */}
-                    <p
-                        className={`text-[14px] leading-[21px] font-semibold ${
-                            isActive ? "text-white" : "text-[#D1D5D8]"
-                        }`}
-                    >
-                        {cat.name}
-                    </p>
-
-                    {/* SUB TEXT */}
-                    <p className={`text-[12px] leading-[18px] font-normal ${
-                        isActive ? "text-white" : "text-[#D1D5D8]"
-                        }`}>
-                        {cat.name === "All Item"
-                            ? `${products.length} item`
-                            : `${getTotalByCategory(cat.name)} item`}
-                    </p>
-
-                </div>
-                );
-            })}
-
-        </div>
         </div>
 
         {/* Produk */}
