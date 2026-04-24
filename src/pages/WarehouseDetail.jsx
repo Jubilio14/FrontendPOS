@@ -278,38 +278,6 @@ export default function WarehouseDetail() {
                     />
                 </div>
 
-                {/* VARIANT */}
-                <div className="relative group">
-                    <img
-                      src="/icons/Warehouse.png"
-                      className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] opacity-50"
-                    />
-
-                    <input
-                      type="text"
-                      placeholder="Variant"
-                      value={form.variant}
-                      onChange={(e) => setForm({ ...form, variant: e.target.value })}
-                      className="h-[50px] w-full bg-[#EAEAEA] rounded-full pl-10 pr-4 outline-none"
-                    />
-                </div>
-
-                {/* TYPE */}
-                <div className="relative group">
-                    <img
-                      src="/icons/Warehouse.png"
-                      className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px] opacity-50"
-                    />
-
-                    <input
-                      type="text"
-                      placeholder="Type"
-                      value={form.type}
-                      onChange={(e) => setForm({ ...form, type: e.target.value })}
-                      className="h-[50px] w-full bg-[#EAEAEA] rounded-full pl-10 pr-4 outline-none"
-                    />
-                </div>
-
                 {/* MAX ITEM */}
                 <div className="relative group">
                     <img
@@ -361,7 +329,7 @@ export default function WarehouseDetail() {
                         const max = Number(form.max);
                         const total = Number(form.total);
 
-                        if (!form.name || !form.variant || !form.type || !max || !total) {
+                        if (!form.name || !max || !total) {
                           setError("Semua field wajib diisi");
                           return;
                         }
@@ -384,8 +352,6 @@ export default function WarehouseDetail() {
                         // reset
                         setForm({
                           name: "",
-                          variant: "",
-                          type: "",
                           max: "",
                           total: "",
                         });
@@ -394,7 +360,7 @@ export default function WarehouseDetail() {
                         setShowAddItem(false);
                       }}
                     className={`px-6 py-2 rounded-full text-white ${
-                      !form.name || !form.variant || !form.type || !form.max || !form.total
+                      !form.name || !form.max || !form.total
                         ? "bg-gray-300 cursor-not-allowed"
                         : "bg-[#702BF0] cursor-pointer hover:opacity-80 transition"
                     }`}
@@ -757,21 +723,13 @@ export default function WarehouseDetail() {
                   // 🔥 UPDATE SOURCE
                   const newTotal = source.total - qty;
 
-                  if (newTotal === 0) {
-                    setCustomItems((prev) => {
-                      const updated = { ...prev };
-                      delete updated[transferIndex];
-                      return updated;
-                    });
-                  } else {
-                    setCustomItems((prev) => ({
-                      ...prev,
-                      [transferIndex]: {
-                        ...source,
-                        total: newTotal,
-                      },
-                    }));
-                  }
+                  setCustomItems((prev) => ({
+                    ...prev,
+                    [transferIndex]: {
+                      ...source,
+                      total: newTotal,
+                    },
+                  }));
 
                   // RESET
                   setTransferForm({
@@ -783,7 +741,7 @@ export default function WarehouseDetail() {
                   setTransferError("");
                   setShowTransferModal(false);
                 }}
-                className="px-6 py-2 bg-[#702BF0] text-white rounded-full"
+                className="px-6 py-2 bg-[#702BF0] text-white rounded-full cursor-pointer"
               >
                 Transfer
               </button>
