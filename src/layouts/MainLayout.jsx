@@ -26,7 +26,7 @@ export default function MainLayout() {
 
       <Sidebar />
 
-      <div className="flex-1 bg-[#EAEAEA] ml-20 px-6 pt-[40px] pb-6">
+      <div className="flex-1 bg-[#EAEAEA] ml-20 px-6 pt-[40px] pb-6 overflow-x-hidden">
         <Outlet />
       </div>
 

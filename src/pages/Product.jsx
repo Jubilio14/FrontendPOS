@@ -312,7 +312,9 @@ export default function Product() {
         </div>
 
         {/* FILTER */}
-        <div className="flex flex-wrap gap-[10px] pb-2">
+        <div className="max-w-full overflow-x-auto pb-2 scrollbar-hide">
+
+        <div className="flex gap-[20px] min-w-max">
 
             {categories.map((cat) => {
                 const isActive = activeCategory === cat.name;
@@ -362,6 +364,7 @@ export default function Product() {
                 );
             })}
 
+        </div>
         </div>
 
         {/* Produk */}

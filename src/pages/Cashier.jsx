@@ -235,7 +235,7 @@ export default function Cashier() {
     };
     
   return (
-    <div className="space-y-[50px]">
+    <div className="space-y-[50px] overflow-x-hidden">
 
         {/* Header */}
         <div className="flex justify-between items-center">
@@ -258,61 +258,60 @@ export default function Cashier() {
 
         </div>
 
-        {/* FILTER */}
-        
-        <div className="flex flex-wrap gap-[20px] overflow-x-auto pb-2">
+      {/* CATEGORY */}
+        <div className="max-w-full overflow-x-auto pb-2 scrollbar-hide">
+
+        <div className="flex gap-[20px] min-w-max">
 
             {categories.map((cat) => {
-                const isActive = activeCategory === cat.name;
+            const isActive = activeCategory === cat.name;
 
-                return (
+            return (
                 <div
-                    key={cat.name}
-                    onClick={() => setActiveCategory(cat.name)}
-                    className={`w-[140px] h-[120px] p-3 rounded-xl cursor-pointer transition
+                key={cat.name}
+                onClick={() => setActiveCategory(cat.name)}
+                className={`min-w-[140px] h-[120px] p-3 rounded-xl cursor-pointer transition
                     ${
-                        isActive
+                    isActive
                         ? "bg-[#702BF0]"
-                        : "bg-[#FFFFFF]"
+                        : "bg-white"
                     }`}
                 >
-
-                    {/* ICON */}
-                    <img
+                <img
                     src={cat.icon}
                     className={`w-[24px] h-[24px] mb-2 ${
-                        isActive
+                    isActive
                         ? "brightness-0 invert"
                         : "opacity-50"
                     }`}
-                    />
+                />
 
-                    {/* TEXT */}
-                    <p
-                        className={`text-[14px] leading-[21px] font-semibold ${
-                            isActive ? "text-white" : "text-[#D1D5D8]"
-                        }`}
-                    >
-                        {cat.name}
-                    </p>
+                <p
+                    className={`text-[14px] font-semibold ${
+                    isActive ? "text-white" : "text-[#D1D5D8]"
+                    }`}
+                >
+                    {cat.name}
+                </p>
 
-                    {/* SUB TEXT */}
-                    <p className={`text-[12px] leading-[18px] font-normal ${
-                        isActive ? "text-white" : "text-[#D1D5D8]"
-                        }`}>
-                        {cat.name === "All Item"
-                            ? `${products.length} item`
-                            : `${getTotalByCategory(cat.name)} item`}
-                    </p>
-
+                <p
+                    className={`text-[12px] ${
+                    isActive ? "text-white" : "text-[#D1D5D8]"
+                    }`}
+                >
+                    {cat.name === "All Item"
+                    ? `${products.length} item`
+                    : `${getTotalByCategory(cat.name)} item`}
+                </p>
                 </div>
-                );
+            );
             })}
 
         </div>
+        </div>
 
         {/* Produk */}
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
             {filteredProducts.length === 0 ? (
 
                 // 🔥 EMPTY STATE
