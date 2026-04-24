@@ -44,7 +44,8 @@ export default function Sidebar() {
 
   // 🔥 CASHIER
   const cashierMenus = [
-    { path: "/cashier", icon: "/icons/Cashier.png" },
+    { path: "/cashier", activeIcon: "/icons/Cashier.png",
+      inactiveIcon: "/icons/CashierWhite.png", },
   ];
 
   const menus = role === "admin" ? adminMenus : cashierMenus;

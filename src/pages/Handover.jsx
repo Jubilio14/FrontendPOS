@@ -9,81 +9,61 @@ export default function Handover() {
 
   const [items, setItems] = useState([
     {
-      name: "Kotak Makan Plastik",
-      variant: "1000 ml",
-      type: "Transparan",
+      name: "Semen Portland 40 Kg",
       qty: 200,
       notes: "Semua unit diterima dalam kondisi baik",
       status: "approved",
     },
     {
-      name: "Botol Plastik PET",
-      variant: "600 ml",
-      type: "Bening",
+      name: "Cat Tembok Interior 5 Kg",
       qty: 500,
       notes: "Ditemukan 12 unit penyok ringan",
       status: "defect",
     },
     {
-      name: "Ember Plastik",
-      variant: "20 Liter",
-      type: "Merah",
+      name: "Kuas Cat 3 Inch",
       qty: 80,
       notes: "Semua unit sesuai spesifikasi",
       status: "approved",
     },
     {
-      name: "Gelas Plastik",
-      variant: "220 ml",
-      type: "Transparan",
-      qty: 2000,
+      name: "Sekop Pasir",
+      qty: 20,
       notes: "Semua unit diterima, tidak ditemukan cacat.",
       status: "approved",
     },
     {
-      name: "Toples Plastik",
-      variant: "5 Liter",
-      type: "Biru",
+      name: "Paku Kayu 3 Inch",
       qty: 120,
       notes: "Banyak unit retak",
       status: "returned",
     },
     {
-      name: "Jerigen Plastik",
-      variant: "5 Liter",
-      type: "Kuning",
+      name: "Mortar Instan 40Kg",
       qty: 90,
       notes: "",
       status: "pending",
     },
     {
-      name: "Ember Plastik",
-      variant: "10 Liter",
-      type: "Hijau",
-      qty: 150,
+      name: "Lem Pipa PVC 40 gram",
+      qty: 70,
       notes: "",
       status: "pending",
     },
     {
-      name: "kotak Makan Plastik",
-      variant: "750 ml",
-      type: "Pink",
-      qty: 180,
+      name: "Tandon Air 500Liter",
+      qty: 60,
       notes: "",
       status: "pending",
     },
     {
-      name: "Baskom Plastik",
-      variant: "30 cm",
-      type: "Orange",
+      name: "Wood Filler 1Kg",
       qty: 140,
       notes: "",
       status: "pending",
     },
     {
-      name: "Tempat Sampah Plastik",
-      variant: "25 Liter",
-      type: "Abu-abu",
+      name: "Kran Air 1/2inch",
       qty: 60,
       notes: "",
       status: "pending",
@@ -194,11 +174,9 @@ export default function Handover() {
       <div className="bg-white rounded-2xl p-6">
 
         {/* HEADER TABLE */}
-        <div className="grid grid-cols-[50px_1.5fr_1fr_1fr_1fr_200px_120px_80px] text-[14px] leading-[21px] font-medium text-[#1D1D1D] px-[20px] py-[30px] gap-[20px] mb-2">
+        <div className="grid grid-cols-[50px_2fr_1fr_2fr_1fr_160px] text-[14px] leading-[21px] font-medium text-[#1D1D1D] px-[20px] py-[30px] gap-[20px] mb-2">
           <span>No</span>
           <span>Item</span>
-          <span>Variant</span>
-          <span>Type</span>
           <span>Quantity</span>
           <span>Notes</span>
           <span>Status</span>
@@ -209,12 +187,10 @@ export default function Handover() {
         {items.map((item, i) => (
           <div
             key={i}
-            className="grid grid-cols-[50px_1.5fr_1fr_1fr_1fr_200px_120px_80px] items-center p-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D]"
+            className="grid grid-cols-[50px_2fr_1fr_2fr_1fr_160px] items-center p-[20px] gap-[20px] border-b last:border-none text-[14px] leading-[21px] font-medium text-[#1D1D1D]"
           >
             <span>{i + 1}</span>
             <span>{item.name}</span>
-            <span>{item.variant}</span>
-            <span>{item.type}</span>
             <span>{item.qty}</span>
 
             {/* NOTES */}
@@ -228,12 +204,14 @@ export default function Handover() {
                 ${item.status === "approved" && "text-green-500"}
                 ${item.status === "defect" && "text-yellow-500"}
                 ${item.status === "returned" && "text-red-500"}
+                ${item.status === "delivered" && "text-blue-500"}
               `}
             >
               {item.status === "approved" && "Approved"}
               {item.status === "defect" && "Defect"}
               {item.status === "returned" && "Returned"}
               {item.status === "pending" && "-"}
+              {item.status === "delivered" && "Delivered"}
             </span>
 
             {/* ACTION */}
@@ -259,7 +237,7 @@ export default function Handover() {
                         className="w-[16px] cursor-pointer hover:scale-110 transition"
                     />
                 </>
-              ) : item.status === "returned" ? (
+              ) : item.status === "returned" || item.status === "delivered" ? (
                     <img
                         src="/icons/Cross.png"
                         className="w-[16px]  cursor-not-allowed"
@@ -495,20 +473,31 @@ export default function Handover() {
                 }
 
                 // UPDATE QTY
-                setItems(prev =>
-                prev
-                    .map((item, i) => {
+               setItems(prev =>
+                prev.map((item, i) => {
                     if (i === transferIndex) {
-                        const newQty = item.qty - qty;
+                    const newQty = item.qty - qty;
 
-                        // kalau habis → return null (nanti difilter)
-                        if (newQty <= 0) return null;
-
-                        return { ...item, qty: newQty };
+                    // FULL TRANSFER
+                    if (newQty <= 0) {
+                        return {
+                        ...item,
+                        qty: 0,
+                        status: "delivered",
+                        notes: `Barang sudah masuk ke warehouse (${transferForm.warehouse})`,
+                        };
                     }
+
+                    // PARTIAL TRANSFER
+                    return {
+                        ...item,
+                        qty: newQty,
+                        notes: `Sebagian barang ditransfer ke ${transferForm.warehouse}`,
+                    };
+                    }
+
                     return item;
-                    })
-                    .filter(item => item !== null) // hapus item null
+                })
                 );
 
                 setTransferError("");

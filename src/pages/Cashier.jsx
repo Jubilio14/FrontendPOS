@@ -167,10 +167,17 @@ export default function Cashier() {
     ];
 
     const [activeCategory, setActiveCategory] = useState("All Item");
-    const filteredProducts =
-        activeCategory === "All Item"
-            ? products
-            : products.filter((item) => item.category === activeCategory);
+    const [search, setSearch] = useState("");
+    const filteredProducts = products.filter((item) => {
+    const matchCategory =
+        activeCategory === "All Item" ||
+        item.category === activeCategory;
+
+    const matchSearch =
+        item.name.toLowerCase().includes(search.toLowerCase());
+
+    return matchCategory && matchSearch;
+    });
     const [showModal, setShowModal] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [variant, setVariant] = useState("Merah");
@@ -252,8 +259,21 @@ export default function Cashier() {
             </div>
 
             {/* Kanan (Search) */}
-            <div className="w-[48px] h-[48px] bg-white rounded-full shadow-sm flex items-center justify-center cursor-pointer">
-                <img src="/icons/searchPurple.png" alt="search" className="w-[24px] h-[24px]" />
+            <div className="relative">
+
+            <img
+                src="/icons/searchPurple.png"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-[18px] h-[18px]"
+            />
+
+            <input
+                type="text"
+                placeholder="Search item..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-[300px] h-[48px] bg-white rounded-full pl-11 pr-4 outline-none text-[14px] shadow-sm"
+            />
+
             </div>
 
         </div>

@@ -236,6 +236,7 @@ const headers = activeTab === "product" ? productHeader : orderHeader;
         </div>
         
         {/* FILTER */}
+        {activeTab === "product" && (
         <div className="flex gap-3">
 
           {/* ALL */}
@@ -285,6 +286,7 @@ const headers = activeTab === "product" ? productHeader : orderHeader;
           </button>
 
         </div>
+        )}
 
       </div>
 
