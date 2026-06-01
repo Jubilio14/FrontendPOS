@@ -261,7 +261,7 @@ const headers = activeTab === "product" ? productHeader : orderHeader;
 
           {/* IN */}
           <button
-            onClick={() => setFilterType("in")}
+            onClick={() => setFilterType("out")}
             className="cursor-pointer transition-all duration-200 hover:scale-105"
           >
             <img
@@ -274,7 +274,7 @@ const headers = activeTab === "product" ? productHeader : orderHeader;
 
           {/* OUT */}
           <button
-            onClick={() => setFilterType("out")}
+            onClick={() => setFilterType("in")}
             className="cursor-pointer transition-all duration-200 hover:scale-105"
           >
             <img
